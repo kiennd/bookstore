@@ -33,6 +33,29 @@ public class UserDAO {
 		}
 		return false;
 	}
+	
+	public int checkUserLogin(User user) {
+		conn = DBConnection.getConn();
+		int id = -1;
+		String query = "select * from tbluser where username = ? and password = ? and roleid = 2";
+		PreparedStatement pr;
+		try {
+
+			pr = conn.prepareStatement(query);
+			pr.setString(1, user.getUsername());
+			pr.setString(2, user.getPassword());
+
+			ResultSet rs = pr.executeQuery();
+			if (rs.next()) {
+				id = rs.getInt("id");
+				return id;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return -1;
+	}
 	public Vector<User> findUser(String name) {
 		conn = DBConnection.getConn();
 		StringBuffer query = new StringBuffer("select * from tblUser as u "
@@ -78,7 +101,7 @@ public class UserDAO {
 
 	public User getUser(int id) {
 		conn = DBConnection.getConn();
-		String query = "select * from tblUser as u "
+		String query = "select * from tbluser as u "
 				+ "Inner join tblrole as r on u.roleid = r.id where u.id=" + id
 				+ " order by u.id";
 		java.sql.Statement st;
@@ -132,6 +155,27 @@ public class UserDAO {
 		return false;
 	}
 	
+	public boolean saveUserFront(User user) {
+		conn = DBConnection.getConn();
+		String query = "update tbluser set username = ?, fullname= ?, phoneNumber = ? "
+				+ "where id = ?";
+		try {
+			PreparedStatement pr = conn.prepareStatement(query);
+			pr.setString(1, user.getUsername());
+			pr.setString(2, user.getFullname());
+			pr.setString(3, user.getPhonenumber());
+			pr.setInt(4, user.getId());
+			if (!pr.execute()) {
+				return true;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+	
 	public boolean deleteUser(int id){
 		conn = DBConnection.getConn();
 		String query = "delete from tbluser where id = "+id;
@@ -165,6 +209,26 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 
+		return false;
+	}
+	
+	public boolean checkUserExist(String username) {
+		conn = DBConnection.getConn();
+		String query = "select * from tbluser where username = ? and roleid = 2";
+		PreparedStatement pr;
+		try {
+
+			pr = conn.prepareStatement(query);
+			pr.setString(1, username);
+
+			ResultSet rs = pr.executeQuery();
+			if (rs.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return false;
 	}
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="userfront" namespace="/" extends="struts-default">
+		<action name="newUser" class="control.frontend.UserAction"
+			method="newUserFrontEnd">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="store">
+				<param name="operationMode">STORE</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="success">index.jsp</result>
+			<result name="error">register.jsp</result>
+		</action>
+		
+		<action name="editUser" class="control.frontend.UserAction"
+			method="editUserFrontEnd">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="store">
+				<param name="operationMode">STORE</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+			<result name="success">index.jsp</result>
+			<result name="error">profile.jsp</result>
+		</action>
+		
+		
+		<action name="login" class="control.frontend.LoginAction" method="execute">
+			<result name="success">index.jsp</result>
+			<result name="input">login.jsp</result>
+		</action>
+		<action name="logout" class="control.frontend.LogoutAction" method="execute">
+			<result name="success">index.jsp</result>
+			<result name="input">login.jsp</result>
+		</action>
+	</package>
+
+</struts>
