@@ -24,5 +24,6 @@
 	<include file="frontendConfig/struts-bookDetails.xml"></include>
 	<include file="frontendConfig/struts-user.xml"></include>
 	<include file="frontendConfig/struts-feedback.xml"></include>
+	<include file="frontendConfig/struts-checkout.xml"></include>
 	
 </struts>
