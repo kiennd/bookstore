@@ -69,7 +69,8 @@
 			        		
 			        		//session.setAttribute("cartlist", cartlist);
 			        		cartlist = new Vector();
-			        		cartlist = (Vector<Cart>) session.getAttribute("cartlist");
+			        		if (session.getAttribute("cartlist")!=null)
+			        			cartlist = (Vector<Cart>) session.getAttribute("cartlist");
 		                  	for(int i = 0; i < cartlist.size();i++) { 
 		                  		Cart c = cartlist.elementAt(i);
 		                  %>

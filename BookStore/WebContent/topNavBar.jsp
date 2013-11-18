@@ -8,7 +8,8 @@
 	String name = null;
 	if (user != null) {
 		name = user.getUsername();
-	}
+	} else 
+		//response.sendRedirect("login.jsp");
 %>
 <section class="top-nav-bar">
 	<section class="container-fluid container">
@@ -40,7 +41,7 @@
 						<a href="#">fr</a></li>
 				</ul>
 				<div class="c-btn">
-					<a href="cart.html" class="cart-btn">Cart</a>
+					<a href="cart.jsp" class="cart-btn">Cart</a>
 					<div class="btn-group">
 						<button data-toggle="dropdown"
 							class="btn btn-mini dropdown-toggle">
