@@ -5,9 +5,12 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Vector;
 
+import model.Book;
 import model.Reservation;
+import model.User;
 
 public class ReservationDAO {
 
@@ -17,11 +20,12 @@ public class ReservationDAO {
 				+ " bookID = ?,"
 				+ " initDate = ?"
 				+ " where id = ?";
+		
 		PreparedStatement pstm;
 		try {
 			pstm = conn.prepareStatement(updatesql);
-			pstm.setInt(1, reservation.getUserID());
-			pstm.setInt(2, reservation.getBookID());
+			pstm.setInt(1, reservation.getUser().getId());
+			pstm.setInt(2, reservation.getBook().getId());
 			pstm.setDate(3, (Date) reservation.getInitDate());
 			pstm.setInt(4, reservation.getId());
 			return !pstm.execute();
@@ -44,9 +48,11 @@ public class ReservationDAO {
 			ResultSet rs = pstm.executeQuery();
 			Reservation reservation = new Reservation();
 			if (rs.next()) {
+				UserDAO userDao = new UserDAO();
+				BookDAO bookDao = new BookDAO();
 				reservation.setId(rs.getInt("id"));
-				reservation.setUserID(rs.getInt("userID"));
-				reservation.setBookID(rs.getInt("bookID"));
+				reservation.setUser(userDao.getUser(rs.getInt("userID")));
+				reservation.setBook(bookDao.getBookbyId(rs.getInt("bookID")));
 				reservation.setInitDate(rs.getDate("initDate"));
 				return reservation;
 			}
@@ -60,32 +66,28 @@ public class ReservationDAO {
 	public Vector<Reservation> searchReservation(String searchKey) {
 		Vector<Reservation> reservationList = new Vector<>();
 		Connection conn = DBConnection.getConn();
-//		String sql = "select o.id" +
-//							"u.username," +
-//					 		"b.title," +
-//					 		"p.methodDescription," +
-//					 		"o.quantiy," +
-//					 		"o.discount," +
-//					 		"o.reservationDate" +
-//					 		"from tblReservation o," +
-//					 		"Inner Join tblUser as u on o.userID = u.id," +
-//					 		"Inner Join tblBook as b on o.bookID = b.id," +
-//					 		"Inner Join tblPaymentMethod as p on o.paymentMethodID = p.id";	 
-//		if (searchKey!=null) {
-//			sql +=" Where u.username LIKE %?% or b.title LIKE %?% or p.methodDescription LIKE %?%";
-//		}
-		String sql = "select * from tblreservation";
+		String sql = "select r.*, u.*,b.* " +
+					 		"from tblReservation r " +
+					 		"Inner Join tblUser as u on r.userID = u.id " +
+					 		"Inner Join tblBook as b on r.bookID = b.id ";
+		if (searchKey!=null) {
+			sql +=" Where u.fullname LIKE '%"+searchKey+"%' or b.title LIKE '%"+searchKey+"%'";
+		}
+		//String sql = "select * from tblreservation";
 		
 		PreparedStatement pstm;
 		try {
 			pstm = conn.prepareStatement(sql);
+			
 			ResultSet rs = pstm.executeQuery();
 			while(rs.next()) {
 				Reservation reservation = new Reservation();
-				reservation.setId(rs.getInt("id"));
-				reservation.setUserID(rs.getInt("userID"));
-				reservation.setBookID(rs.getInt("bookID"));
-				reservation.setInitDate(rs.getDate("initDate"));
+				UserDAO userDao = new UserDAO();
+				BookDAO bookDao = new BookDAO();
+				reservation.setId(rs.getInt("r.id"));
+				reservation.setUser(userDao.getUser(rs.getInt("u.id")));
+				reservation.setBook(bookDao.getBookbyId(rs.getInt("b.id")));
+				reservation.setInitDate(rs.getDate("r.initDate"));				
 				reservationList.add(reservation);
 			}
 		} catch (SQLException e) {
@@ -93,5 +95,32 @@ public class ReservationDAO {
 			e.printStackTrace();
 		}
 		return reservationList;
+	}
+	
+	public Vector<Reservation> getReservationByUser(User user) {
+		Connection conn = DBConnection.getConn();
+		String sql = "select * from tblreservation where userID = " + user.getId();
+		Statement st;
+		Vector<Reservation> rslist = new Vector<>();
+		try {
+			st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				BookDAO bookDao = new BookDAO();
+				Book book = bookDao.getBookbyId(rs.getInt("bookID"));
+				Reservation reservation = new Reservation();
+				reservation.setId(rs.getInt("id"));
+				
+				reservation.setBook(book);
+				reservation.setUser(user);
+				reservation.setInitDate(rs.getDate("initDate"));
+				rslist.add(reservation);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rslist;
+		
 	}
 }

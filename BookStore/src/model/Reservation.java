@@ -8,7 +8,9 @@ public class Reservation implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 5198710930948920698L;
-	private int id,userID,bookID;
+	private int id;
+	private User user;
+	private Book book;
 	private Date initDate;
 	public int getId() {
 		return id;
@@ -16,17 +18,18 @@ public class Reservation implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getUserID() {
-		return userID;
+	
+	public User getUser() {
+		return user;
 	}
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	public int getBookID() {
-		return bookID;
+	public Book getBook() {
+		return book;
 	}
-	public void setBookID(int bookID) {
-		this.bookID = bookID;
+	public void setBook(Book book) {
+		this.book = book;
 	}
 	public Date getInitDate() {
 		return initDate;

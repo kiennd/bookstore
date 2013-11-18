@@ -45,16 +45,8 @@
 						<table>
 						<tr>
 							<s:hidden name="reservation.id"></s:hidden>
-						</tr>
-						<tr>
-							<s:textfield name="reservation.userID" key="User ID"
-								cssClass="text-input medium-input"></s:textfield>
-						</tr>
-						<tr>
-							<td>
-							<s:textfield name="reservation.bookID" key="Book ID"
-								cssClass="text-input medium-input"></s:textfield>
-							</td>
+							<s:hidden name="userid"></s:hidden>
+							<s:hidden name="bookid"></s:hidden>
 						</tr>
 						<tr>
 							<td>

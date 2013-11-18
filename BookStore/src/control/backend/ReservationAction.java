@@ -3,7 +3,9 @@ package control.backend;
 import java.util.Vector;
 
 import model.Reservation;
+import DAO.BookDAO;
 import DAO.ReservationDAO;
+import DAO.UserDAO;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -16,7 +18,26 @@ public class ReservationAction extends ActionSupport {
 	private Reservation reservation;
 
 	private int id;
+	private int userid;
+	private int bookid;
+	
 	private Vector<Reservation> reservationlist;
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	public int getBookid() {
+		return bookid;
+	}
+
+	public void setBookid(int bookid) {
+		this.bookid = bookid;
+	}
+
 	private String name = "";
 	private int page, totalPage, startIndex, endIndex;
 	private static final int ITEM_PER_PAGE = 20;
@@ -117,6 +138,8 @@ public class ReservationAction extends ActionSupport {
 	public String editReservation() {
 		ReservationDAO reservationDao = new ReservationDAO();
 		this.reservation = reservationDao.getReservation(id);
+		this.bookid = this.reservation.getBook().getId();
+		this.userid = this.reservation.getUser().getId();
 		if (this.reservation != null) {
 			return SUCCESS;
 		}
@@ -125,6 +148,10 @@ public class ReservationAction extends ActionSupport {
 
 	public String saveReservation() {
 		ReservationDAO reservationDao = new ReservationDAO();
+		BookDAO bookDao = new BookDAO();
+		UserDAO userDao = new UserDAO();
+		this.reservation.setBook(bookDao.getBookbyId(bookid));
+		this.reservation.setUser(userDao.getUser(userid));
 		if (reservationDao.editReservation(this.reservation)) {
 			return SUCCESS;
 		}

@@ -38,19 +38,26 @@
 						<table>
 							<tr>
 								<s:hidden name="order.id"></s:hidden>
+								<s:hidden name="userid"></s:hidden>
+								<s:hidden name="bookid"></s:hidden>
 							</tr>
+							
+							
 							<tr>
-								<td><s:textfield name="order.userID" key="User ID"
-										cssClass="text-input medium-input"></s:textfield></td>
+								<td>
+									<s:label name="order.user.fullname" key="User Name"></s:label>
+								</td>
 							</tr>
+							
 							<tr>
-								<td><s:textfield name="order.bookID" key="Book ID"
-										cssClass="text-input medium-input"></s:textfield></td>
+								<td>
+									<s:label name="order.book.title" key="Book"></s:label>
+								</td>
 							</tr>
-
+		
 							<tr>
-								<td><s:textfield name="order.paymentMethodID"
-										key="PaymentMethodID" cssClass="text-input medium-input"></s:textfield>
+								<td>
+									<s:select list="paymentlist" listKey="id" listValue="methodDescription" headerValue="order.paymentMethod.methodDescription" name="pmid" label="Payment Method"></s:select>
 								</td>
 							</tr>
 							<tr>
