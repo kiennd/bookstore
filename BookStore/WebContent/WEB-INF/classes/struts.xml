@@ -21,5 +21,6 @@
 
 	<include file="frontendConfig/struts-index.xml"></include>
 	<include file="frontendConfig/struts-books.xml"></include>
+	<include file="frontendConfig/struts-bookDetails.xml"></include>
 	
 </struts>

@@ -7,16 +7,27 @@
 	pageEncoding="UTF-8"%>
 <%
 	int bookid = Integer.parseInt(request.getParameter("id"));
-	int quantity = Integer.parseInt(request.getParameter("quantity"));
+	out.print(bookid);
 	Vector<Cart> cartlist = new Vector();
 	if (session.getAttribute("cartlist") != null) {
-		cartlist = (Vector<Cart>)session.getAttribute("cartlist");
+		cartlist = (Vector<Cart>) session.getAttribute("cartlist");
 	}
+
 	Cart cart = new Cart();
-	BookDAO bookDao = new BookDAO();
-	cart.setBook(bookDao.getBookbyId(bookid));
-	cart.setQuantity(quantity);
-	cartlist.addElement(cart);
+	for (Cart c : cartlist) {
+		if (c.getBook().getId() == bookid) {
+			c.setQuantity(c.getQuantity() + 1);
+			cart = c;
+			break;
+		}
+	}
+	if (cart.getBook()==null) {
+		BookDAO bookDao = new BookDAO();
+		cart.setBook(bookDao.getBookbyId(bookid));
+		cart.setQuantity(1);
+		cartlist.addElement(cart);
+	}
+	
 	session.setAttribute("cartlist", cartlist);
 	response.sendRedirect("cart.jsp");
-%>	
+%>

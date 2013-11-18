@@ -1,3 +1,4 @@
+<%@page import="model.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
@@ -7,6 +8,12 @@
 <%@include file="head.jsp"%>
 </head>
 <body>
+	<%
+		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			//response.sendRedirect("login.jsp");
+		}
+	%>
 	<!-- Start Main Wrapper -->
 	<div class="wrapper">
 		<!-- Start Main Header -->
@@ -77,20 +84,19 @@
 		              <div class="accordion-heading"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"> Billing Information </a> </div>
 		              <div id="collapseTwo" class="accordion-body collapse">
 		                <div class="accordion-inner">
-		                	<strong class="green-t">Checkout as Guest</strong>
 		                    <form class="form-horizontal">
 		                        <ul class="billing-form">
 		                            <li>   
 		                              <div class="control-group">
 		                                <label class="control-label" for="inputFirstname">Fullname <sup>*</sup></label>
 		                                <div class="controls">
-		                                  <s:textfield name="fullname" placeholder="Fullname"/>
+		                                  <%=user.getFullname() %>
 		                                </div>
 		                              </div>
 		                              <div class="control-group">
 		                                <label class="control-label" for="inputEmail">Email<sup>*</sup></label>
 		                                <div class="controls">
-		                                  <s:textfield name="email" placeholder=""/>
+		                                  <%=user.getEmail() %>
 		                                </div>
 		                              </div>
 		                            </li>
@@ -98,13 +104,13 @@
 		                              <div class="control-group">
 		                                <label class="control-label" for="inputAddress">Address<sup>*</sup></label>
 		                                <div class="controls">
-		                                  <s:textfield name="address" placeholder="" class="address-field"/>
+		                                  <%=user.getAddress() %>
 		                                </div>
 		                              </div>
 		                              <div class="control-group">
 		                                <label class="control-label" for="inputCity">City <sup>*</sup></label>
 		                                <div class="controls">
-		                                  <s:textfield name="city" placeholder=""/>
+		                                  <%=user.getCity() %>
 		                                </div>
 		                              </div>
 		                            </li>
@@ -112,12 +118,13 @@
 		                              <div class="control-group">
 		                                <label class="control-label" for="inputZip">Zip/Postal Code <sup>*</sup></label>
 		                                <div class="controls">
-		                                  <s:textfield name="inputZip" placeholder=""/>
+		                                  <%=user.getZipcode() %>
 		                                </div>
 		                              </div>
 		                              <div class="control-group">
 		                                <label class="control-label" for="inputCountry">Country <sup>*</sup></label>
 		                                <div class="controls">
+		                                <!--
 		                                  <select name="country">
 		                                        <option value="">United States...</option>
 		                                        <option value="Afganistan">Afghanistan</option>
@@ -367,6 +374,8 @@
 		                                        <option value="Zambia">Zambia</option>
 		                                        <option value="Zimbabwe">Zimbabwe</option>
 		                                   </select>
+		                                   -->
+		                                   <%=user.getCountry() %>
 		                                </div>
 		                              </div>
 		                            </li>
@@ -374,7 +383,7 @@
 		                              <div class="control-group">
 		                                <label class="control-label" for="inputTelephone">Telephone <sup>*</sup></label>
 		                                <div class="controls">
-		                                  <s:textfield name="phone" placeholder=""/>
+		                                  <%=user.getPhonenumber() %>
 		                                </div>
 		                              </div>
 		                            </li>
