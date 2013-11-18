@@ -26,7 +26,6 @@ public class IndexAction extends ActionSupport {
 		newBooks = bd.getNewBooks(10);
 		bestSellingBooks = bd.getBestSellingBooks(10);
 		
-		
 		AuthorDAO ad = new AuthorDAO();
 		authorHightLight = ad.getAuthorHightLight();
 		authorBooks = bd.getBooksByAuthorId(authorHightLight.getId());
@@ -34,11 +33,9 @@ public class IndexAction extends ActionSupport {
 	}
 	
 	
-
 	public Author getAuthorHightLight() {
 		return authorHightLight;
 	}
-
 
 
 	public void setAuthorHightLight(Author authorHightLight) {

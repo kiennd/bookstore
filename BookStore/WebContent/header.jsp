@@ -8,7 +8,7 @@
         </section>
         <section class="span8">
           <ul class="top-nav2">
-            <li><a href="checkout.html">My Account</a></li>
+            <li><a href="profile.jsp">My Account</a></li>
             <li><a href="cart.html">My Cart</a></li>
             <li><a href="checkout.html">Checkout</a></li>
             <li><a href="order-recieved.html">Track Your Order</a></li>
@@ -43,7 +43,7 @@
                     <li><a href="grid-view-without-side-bar.html">Product Grid View Without Side Bar</a></li>
                     <li><a href="shortcodes.html">Short Codes</a></li>
                     <li><a href="blog-detail.html">News</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="contact.jsp">Contact Us</a></li>
                 </ul>
               </li>
               <li class="dropdown"> <a class="dropdown-toggle" href="grid-view.html" data-toggle="dropdown">Movies & TV <b class="caret"></b> </a>

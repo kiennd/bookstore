@@ -22,9 +22,10 @@ jQuery(document).ready(function($){
 	if ($('.slider7').length){
 		$('.slider7').bxSlider({ slideWidth: 1170,   mode: 'horizontal',  useCSS: false, easing: 'easeOutElastic',  speed: 2000 });
     }
-	if ($('.slider8').length){
-		$('.slider8').bxSlider({ slideWidth: 270,   mode: 'horizontal',  useCSS: false, easing: 'easeOutElastic',  speed: 2000 });
-	}
+	   if ($('.slider8').length){
+			$('.slider8').bxSlider({ slideWidth: 80, minSlides: 1, maxSlides: 8, slideMargin: 18,  speed: 1500  });
+	    }
+	
 	
 /* BX slider 1*/
 });
