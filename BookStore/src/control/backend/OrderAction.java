@@ -1,14 +1,20 @@
 package control.backend;
 
-import java.util.ArrayList;
 import java.util.Vector;
 
+import model.Book;
 import model.Order;
+import model.PaymentMethod;
+import model.User;
+import DAO.BookDAO;
 import DAO.OrderDAO;
+import DAO.PaymentMethodDAO;
+import DAO.UserDAO;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class OrderAction extends ActionSupport {
+
+public class OrderAction extends ActionSupport{
 
 	/**
 	 * 
@@ -16,13 +22,17 @@ public class OrderAction extends ActionSupport {
 	private static final long serialVersionUID = 8064257333333547348L;
 	
 	private Order order;
+	private int bookid;
+	private int userid;
+	private int pmid;
 	
 	private int id;
 	private Vector<Order> orderlist;
-	private ArrayList<String> paymentlist;
+	private Vector<PaymentMethod> paymentlist;
 	private String name = "";
 	private int page, totalPage, startIndex, endIndex;
 	private static final int ITEM_PER_PAGE = 20;
+	
 	
 	
 	public Order getOrder() {
@@ -34,6 +44,39 @@ public class OrderAction extends ActionSupport {
 		this.order = order;
 	}
 
+	public int getPmid() {
+		return pmid;
+	}
+
+
+	public void setPmid(int pmid) {
+		this.pmid = pmid;
+	}
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+	public int getBookid() {
+		return bookid;
+	}
+
+
+	public void setBookid(int bookid) {
+		this.bookid = bookid;
+	}
+
+
+	public int getUserid() {
+		return userid;
+	}
+
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
 
 	public int getId() {
 		return id;
@@ -55,12 +98,12 @@ public class OrderAction extends ActionSupport {
 	}
 
 
-	public ArrayList<String> getPaymentlist() {
+	public Vector<PaymentMethod> getPaymentlist() {
 		return paymentlist;
 	}
 
 
-	public void setPaymentlist(ArrayList<String> paymentlist) {
+	public void setPaymentlist(Vector<PaymentMethod> paymentlist) {
 		this.paymentlist = paymentlist;
 	}
 
@@ -147,6 +190,10 @@ public class OrderAction extends ActionSupport {
 	public String editOrder() {
 		OrderDAO orderDao = new OrderDAO();
 		this.order = orderDao.getOrder(id);
+		this.userid = this.order.getUser().getId();
+		this.bookid = this.order.getBook().getId();
+		PaymentMethodDAO paymentMethodDao = new PaymentMethodDAO();
+		this.paymentlist = paymentMethodDao.find("");
 		if (this.order!=null) {
 			return SUCCESS;
 		}
@@ -157,8 +204,13 @@ public class OrderAction extends ActionSupport {
 
 	public String saveOrder() {
 		OrderDAO orderDao = new OrderDAO();
+		BookDAO bookDao = new BookDAO();
+		UserDAO userDao = new UserDAO();
+		PaymentMethodDAO pmDao = new PaymentMethodDAO();
+		this.order.setBook(bookDao.getBookbyId(this.bookid));
+		this.order.setUser(userDao.getUser(userid));
+		this.order.setPaymentMethod(pmDao.getPaymentMethod(pmid));
 		if (orderDao.editOrder(this.order)) {
-			System.out.println(this.order.getId());
 			return SUCCESS;
 		}
 		return ERROR;

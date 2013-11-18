@@ -43,9 +43,9 @@
 							<tr>
 								<th><input class="check-all" type="checkbox" /></th>
 								<th>#</th>
-								<th>UserID</th>
-								<th>BookID</th>
-								<th>PaymentMethodID</th>
+								<th>User</th>
+								<th>Book</th>
+								<th>PaymentMethod</th>
 								<th>Price</th>
 								<th>Quantity</th>
 								<th>Discount</th>
@@ -61,9 +61,9 @@
 								<tr>
 									<td><input type="checkbox" /></td>
 									<td align="center"><s:property value="id" /></td>
-									<td align="center"><s:property value="userID" /></td>
-									<td align="center"><s:property value="bookID" /></td>
-									<td align="center"><s:property value="paymentMethodID" /></td>
+									<td align="center"><s:property value="user.fullname" /></td>
+									<td align="center"><s:property value="book.title" /></td>
+									<td align="center"><s:property value="paymentMethod.methodDescription" /></td>
 									<td align="center"><s:property value="price" /></td>
 									<td align="center"><s:property value="quantity" /></td>
 									<td align="center"><s:property value="discount" /></td>

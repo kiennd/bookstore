@@ -1,3 +1,8 @@
+<%@page import="java.nio.channels.SeekableByteChannel"%>
+<%@page import="model.Book"%>
+<%@page import="java.util.Vector"%>
+<%@page import="DAO.BookDAO"%>
+<%@page import="model.Cart"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
@@ -15,7 +20,7 @@
 		<!-- End Top Nav Bar -->
 		<%@include file="header.jsp"%>
 		<!-- End Main Header -->
-
+		
 		  <!-- Start Main Content Holder -->
 		  <section id="content-holder" class="container-fluid container">
 		    <section class="row-fluid">
@@ -24,28 +29,59 @@
 		            <div class="heading-bar">
 		            	<h2>SHOPPING CART</h2>
 		                <span class="h-line"></span>
-		            	<a href="#" class="more-btn">proceed to checkout</a>
+		            	<a href="checkout.jsp" class="more-btn">proceed to checkout</a>
 		            </div>
 		            <div class="cart-table-holder">
+		            	<%
+		            	
+		            	%>
 		            	<table width="100%" border="0" cellpadding="10">
 		                  <tr>
 		                    <th width="14%">&nbsp;</th>
 		                    <th width="43%" align="left">Product Name</th>
-		                    <th width="6%"></th>
 		                    <th width="10%">Unit Price</th>
 		                    <th width="10%">Quantity</th>
-		                    <th width="12%">Subtota</th>
+		                    <th width="12%">Subtotal</th>
+		                    <th width="6%"></th>
 		                    <th width="5%">&nbsp;</th>
 		                  </tr>
-		                  <tr bgcolor="#FFFFFF" class=" product-detail">
-		                    <td valign="top"><img src="images/image07.jpg" /></td>
-		                    <td valign="top">The Kite Runner by Khalid Hosseini</td>
-		                    <td align="center" valign="top"><a href="#">Edit</a></td>
-		                    <td align="center" valign="top">$295.00</td>
-		                    <td align="center" valign="top"><input name="" type="text" value="1" /></td>
-		                    <td align="center" valign="top">$295.00</td>
-		                    <td align="center" valign="top"><a href="#"> <i class="icon-trash"></i></a></td>
-		                  </tr>
+		                  <% 
+		                  	//Cart cart = new Cart();
+			        		//BookDAO bookDao = new BookDAO();
+			        		//Vector<Book> listbook = bookDao.vecBook("");
+			        		Vector<Cart> cartlist = new Vector();
+			        		//cart.setBook(bookDao.getBookbyId(21));
+			        		//cart.setQuantity(1);
+			        		//cart.setSubtotal(listbook.get(0).getPrice() * cart.getQuantity());
+			        		//cartlist.addElement(cart);
+			        		
+			        		//cart = new Cart();
+			        		//cart.setBook(bookDao.getBookbyId(22));
+			        		//cart.setQuantity(1);
+			        		//cart.setSubtotal(cart.getBook().getPrice() * cart.getQuantity());
+			        		//cartlist.addElement(cart);
+			        		
+			        		//cart = new Cart();
+			        		//cart.setBook(bookDao.getBookbyId(988));
+			        		//cart.setQuantity(1);
+			        		//cart.setSubtotal(cart.getBook().getPrice() * cart.getQuantity());
+			        		//cartlist.addElement(cart);
+			        		
+			        		//session.setAttribute("cartlist", cartlist);
+			        		cartlist = new Vector();
+			        		cartlist = (Vector<Cart>) session.getAttribute("cartlist");
+		                  	for(int i = 0; i < cartlist.size();i++) { 
+		                  		Cart c = cartlist.elementAt(i);
+		                  %>
+		                  <tr>
+		                  	<td valign="top"><img src="images/books/<%= c.getBook().getImageurl()%>"></img></td>
+		                  	<td valign="top"><%= c.getBook().getTitle() %></td>
+		                    <td align="center" valign="top"><%= c.getBook().getPrice() %></td>
+		                    <td align="center" valign="top"><%= c.getQuantity() %></td>
+		                    <td align="center" valign="top"><%= c.getSubtotal() %></td>
+		                    <td align="center" valign="top"><a href="deletecart.jsp?id=<%=c.getBook().getId() %>"><i class="icon-trash"></i></a></td>
+		                    </tr>
+		                  <%}%>
 		                 
 		                </table>
 		
@@ -428,13 +464,15 @@
 		            <figure class="span4 price-total">
 		            	<div class="cart-option-box">
 		                    <table width="100%" border="0" cellpadding="10" class="total-payment">
+		                      <!--
 		                      <tr>
 		                        <td width="55%" align="right"><strong>Subtotal</strong></td>
 		                        <td width="45%" align="left">$295.00</td>
 		                      </tr>
+		                      -->
 		                      <tr>
 		                        <td align="right"><strong class="large-f">GRAND TOTAL</strong></td>
-		                        <td align="left"><strong class="large-f">$295.00</strong></td>
+		                        <td align="left"><strong class="large-f"><s:property value="total"/></strong></td>
 		                      </tr>
 		                  </table>
 		                  <hr />

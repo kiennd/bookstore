@@ -8,33 +8,41 @@ public class Order implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -8498816808466061476L;
-	private int id,userID,bookID,paymentMethodID,price,quantity;
+	private int id,price,quantity;
+	private User user;
+	private Book book;
+	private PaymentMethod paymentMethod;
 	private float discount;
 	private Date orderDate;
+	private int cardnumber, cardverificationnumber;
+	private String nameoncard;
+	private Date expirationdate;
+	
 	public int getId() {
 		return id;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public Book getBook() {
+		return book;
+	}
+	public void setBook(Book book) {
+		this.book = book;
+	}
+	public PaymentMethod getPaymentMethod() {
+		return paymentMethod;
+	}
+	public void setPaymentMethod(PaymentMethod paymentMethod) {
+		this.paymentMethod = paymentMethod;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getUserID() {
-		return userID;
-	}
-	public void setUserID(int userID) {
-		this.userID = userID;
-	}
-	public int getBookID() {
-		return bookID;
-	}
-	public void setBookID(int bookID) {
-		this.bookID = bookID;
-	}
-	public int getPaymentMethodID() {
-		return paymentMethodID;
-	}
-	public void setPaymentMethodID(int paymentMethodID) {
-		this.paymentMethodID = paymentMethodID;
-	}
+	
 	public int getPrice() {
 		return price;
 	}
@@ -59,19 +67,31 @@ public class Order implements Serializable{
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
 	}
-	public Order(int id, int userID, int bookID, int paymentMethodID,
-			int price, int quantity, float discount, Date orderDate) {
-		super();
-		this.id = id;
-		this.userID = userID;
-		this.bookID = bookID;
-		this.paymentMethodID = paymentMethodID;
-		this.price = price;
-		this.quantity = quantity;
-		this.discount = discount;
-		this.orderDate = orderDate;
-	}
 	
+	public int getCardnumber() {
+		return cardnumber;
+	}
+	public void setCardnumber(int cardnumber) {
+		this.cardnumber = cardnumber;
+	}
+	public int getCardverificationnumber() {
+		return cardverificationnumber;
+	}
+	public void setCardverificationnumber(int cardverificationnumber) {
+		this.cardverificationnumber = cardverificationnumber;
+	}
+	public String getNameoncard() {
+		return nameoncard;
+	}
+	public void setNameoncard(String nameoncard) {
+		this.nameoncard = nameoncard;
+	}
+	public Date getExpirationdate() {
+		return expirationdate;
+	}
+	public void setExpirationdate(Date expirationdate) {
+		this.expirationdate = expirationdate;
+	}
 	public Order() {
 		// TODO Auto-generated constructor stub
 	}
