@@ -11,7 +11,9 @@ import java.util.Vector;
 
 
 
+
 import model.Order;
+
 
 public class OrderDAO {
 
@@ -29,9 +31,9 @@ public class OrderDAO {
 		PreparedStatement pstm;
 		try {
 			pstm = conn.prepareStatement(updatesql);
-			pstm.setInt(1, order.getUserID());
-			pstm.setInt(2, order.getBookID());
-			pstm.setInt(3, order.getPaymentMethodID());
+			pstm.setInt(1, order.getUser().getId());
+			pstm.setInt(2, order.getBook().getId());
+			pstm.setInt(3, order.getPaymentMethod().getId());
 			pstm.setInt(4, order.getPrice());
 			pstm.setInt(5, order.getQuantity());
 			pstm.setFloat(6, order.getDiscount());
@@ -47,6 +49,35 @@ public class OrderDAO {
 		return false;
 	}
 	
+	public boolean saveNewOrder(Order order) {
+		Connection conn = DBConnection.getConn();
+		String sql = "insert into tblorder(id,userID,bookID,paymentMethodID,"
+				+ "orderDate,discount,price,quantity,cardnumber,cardverificationnumber,nameoncard,expirationdate) "
+				+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
+		PreparedStatement pstm;
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, order.getId());
+			pstm.setInt(2, order.getUser().getId());
+			pstm.setInt(3, order.getBook().getId());
+			pstm.setInt(4, order.getPaymentMethod().getId());
+			pstm.setDate(5, order.getOrderDate());
+			pstm.setFloat(6, order.getDiscount());
+			pstm.setInt(7, order.getPrice());
+			pstm.setInt(8, order.getQuantity());
+			pstm.setInt(9, order.getCardnumber());
+			pstm.setInt(10, order.getCardverificationnumber());
+			pstm.setString(11, order.getNameoncard());
+			pstm.setDate(12,order.getExpirationdate());
+			
+			return !pstm.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+		
+	}
 	public Order getOrder(int id) {
 		Connection conn = DBConnection.getConn();
 		String sql = "select * from tblorder where id=?";
@@ -57,15 +88,17 @@ public class OrderDAO {
 			ResultSet rs = pstm.executeQuery();
 			Order order = new Order();
 			if (rs.next()) {
+				UserDAO userDao = new UserDAO();
+				BookDAO bookDao = new BookDAO();
+				PaymentMethodDAO paymentMethodDao = new PaymentMethodDAO();
 				order.setId(rs.getInt("id"));
-				order.setUserID(rs.getInt("userID"));
-				order.setBookID(rs.getInt("bookID"));
-				order.setPaymentMethodID(rs.getInt("paymentMethodID"));
+				order.setUser(userDao.getUser(rs.getInt("userID")));
+				order.setBook(bookDao.getBookbyId(rs.getInt("bookID")));
+				order.setPaymentMethod(paymentMethodDao.getPaymentMethod(rs.getInt("paymentMethodID")));
 				order.setPrice(rs.getInt("price"));
 				order.setQuantity(rs.getInt("quantity"));
 				order.setDiscount(rs.getFloat("discount"));
 				order.setOrderDate(rs.getDate("orderDate"));
-				System.out.println(order.getOrderDate());
 				return order;
 			}
 		} catch (SQLException e) {
@@ -78,21 +111,15 @@ public class OrderDAO {
 	public Vector<Order> searchOrder(String searchKey) {
 		Vector<Order> orderList = new Vector<>();
 		Connection conn = DBConnection.getConn();
-//		String sql = "select o.id" +
-//							"u.username," +
-//					 		"b.title," +
-//					 		"p.methodDescription," +
-//					 		"o.quantiy," +
-//					 		"o.discount," +
-//					 		"o.orderDate" +
-//					 		"from tblOrder o," +
-//					 		"Inner Join tblUser as u on o.userID = u.id," +
-//					 		"Inner Join tblBook as b on o.bookID = b.id," +
-//					 		"Inner Join tblPaymentMethod as p on o.paymentMethodID = p.id";	 
-//		if (searchKey!=null) {
-//			sql +=" Where u.username LIKE %?% or b.title LIKE %?% or p.methodDescription LIKE %?%";
-//		}
-		String sql = "select * from tblorder";
+		String sql = "select o.*, u.*, b.*, p.* " +
+					 		"from tblOrder o " +
+					 		"Inner Join tblUser as u on o.userID = u.id " +
+					 		"Inner Join tblBook as b on o.bookID = b.id " +
+					 		"Inner Join tblPaymentMethod as p on o.paymentMethodID = p.id";	 
+		if (searchKey!=null) {
+			sql +=" Where u.fullname LIKE '%"+searchKey+"%' or b.title LIKE '%"+searchKey+"%' or p.methodDescription LIKE '%"+searchKey+"%'";
+		}
+		//String sql = "select * from tblorder";
 		
 		PreparedStatement pstm;
 		try {
@@ -100,14 +127,18 @@ public class OrderDAO {
 			ResultSet rs = pstm.executeQuery();
 			while(rs.next()) {
 				Order order = new Order();
-				order.setId(rs.getInt("id"));
-				order.setUserID(rs.getInt("userID"));
-				order.setBookID(rs.getInt("bookID"));
-				order.setPaymentMethodID(rs.getInt("paymentMethodID"));
-				order.setPrice(rs.getInt("price"));
-				order.setQuantity(rs.getInt("quantity"));
-				order.setDiscount(rs.getFloat("discount"));
-				order.setOrderDate(rs.getDate("orderDate"));
+				UserDAO userDao = new UserDAO();
+				BookDAO bookDao = new BookDAO();
+				PaymentMethodDAO paymentMethodDao = new PaymentMethodDAO();
+				
+				order.setId(rs.getInt("o.id"));
+				order.setUser(userDao.getUser(rs.getInt("o.userID")));
+				order.setBook(bookDao.getBookbyId(rs.getInt("o.bookID")));
+				order.setPaymentMethod(paymentMethodDao.getPaymentMethod(rs.getInt("o.paymentMethodID")));
+				order.setPrice(rs.getInt("o.price"));
+				order.setQuantity(rs.getInt("o.quantity"));
+				order.setDiscount(rs.getFloat("o.discount"));
+				order.setOrderDate(rs.getDate("o.orderDate"));
 				orderList.add(order);
 			}
 		} catch (SQLException e) {

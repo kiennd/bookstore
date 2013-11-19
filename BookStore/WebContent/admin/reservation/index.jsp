@@ -39,8 +39,8 @@
 							<tr>
 								<th><input class="check-all" type="checkbox" /></th>
 								<th>#</th>
-								<th>UserID</th>
-								<th>BookID</th>
+								<th>User</th>
+								<th>Book</th>
 								<th>InitDate</th>
 								<th>Edit</th>
 							</tr>
@@ -51,8 +51,8 @@
 								<tr>
 									<td><input type="checkbox" /></td>
 									<td align="center"><s:property value="id" /></td>
-									<td align="center"><s:property value="userID" /></td>
-									<td align="center"><s:property value="bookID" /></td>
+									<td align="center"><s:property value="user.name" /></td>
+									<td align="center"><s:property value="book.title" /></td>
 									<td align="center"><s:property value="initDate" /></td>
 									<td align="center">
 										<!-- Icons --> <a

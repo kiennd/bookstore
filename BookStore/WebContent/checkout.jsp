@@ -27,7 +27,9 @@
 		        <section class="span9 first">
 		          <!-- Start Accordian Section -->
 		          <div class="accordion" id="accordion2">
+		          	<!--
 		            <div class="accordion-group">
+		            	
 		              <div class="accordion-heading"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"> Checkout Method </a></div>
 		              <div id="collapseOne" class="accordion-body collapse in">
 		                <div class="accordion-inner">
@@ -43,7 +45,7 @@
 		                    <p>Register with us for future convenience:</p>
 		                    <p>* Fast and easy check out <br />
 		                      * Easy access to your order history and status</p>
-		                    <a href="#" class="more-btn">Continue</a> </div>
+		                    <a href="#collapseTwo" class="more-btn">Continue</a> </div>
 		                  <div class="span5 check-method-right"> <strong class="green-t">Login</strong>
 		                    <p>Already registered? Please log in below:</p>
 		                    <form class="form-horizontal">
@@ -70,6 +72,7 @@
 		                </div>
 		              </div>
 		            </div>
+		            -->
 		            <div class="accordion-group">
 		              <div class="accordion-heading"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"> Billing Information </a> </div>
 		              <div id="collapseTwo" class="accordion-body collapse">
@@ -79,30 +82,15 @@
 		                        <ul class="billing-form">
 		                            <li>   
 		                              <div class="control-group">
-		                                <label class="control-label" for="inputFirstname">First Name <sup>*</sup></label>
+		                                <label class="control-label" for="inputFirstname">Fullname <sup>*</sup></label>
 		                                <div class="controls">
-		                                  <input type="text" id="inputFirstname" placeholder="">
+		                                  <s:textfield name="fullname" placeholder="Fullname"/>
 		                                </div>
 		                              </div>
 		                              <div class="control-group">
-		                                <label class="control-label" for="inputLastname">Last Name<sup>*</sup></label>
+		                                <label class="control-label" for="inputEmail">Email<sup>*</sup></label>
 		                                <div class="controls">
-		                                  <input type="text" id="inputLastname" placeholder="">
-		                                </div>
-		                              </div>
-		                              
-		                            </li>
-		                            <li>   
-		                              <div class="control-group">
-		                                <label class="control-label" for="inputCompany">Company<sup>*</sup></label>
-		                                <div class="controls">
-		                                  <input type="text" id="inputCompany" placeholder="">
-		                                </div>
-		                              </div>
-		                              <div class="control-group">
-		                                <label class="control-label" for="inputEmail">Email Address<sup>*</sup></label>
-		                                <div class="controls">
-		                                  <input type="text" id="inputEmail" placeholder="">
+		                                  <s:textfield name="email" placeholder=""/>
 		                                </div>
 		                              </div>
 		                            </li>
@@ -110,98 +98,13 @@
 		                              <div class="control-group">
 		                                <label class="control-label" for="inputAddress">Address<sup>*</sup></label>
 		                                <div class="controls">
-		                                  <input type="text" id="inputAddress" placeholder="" class="address-field">
+		                                  <s:textfield name="address" placeholder="" class="address-field"/>
 		                                </div>
 		                              </div>
-		                            </li>
-		                            <li>   
 		                              <div class="control-group">
 		                                <label class="control-label" for="inputCity">City <sup>*</sup></label>
 		                                <div class="controls">
-		                                  <input type="text" id="inputCity" placeholder="">
-		                                </div>
-		                              </div>
-		                              <div class="control-group">
-		                                <label class="control-label" for="inputState/Province">State/Province<sup>*</sup></label>
-		                                <div class="controls">
-		                                  <select name="state" size="1">
-		                                    <option selected value="">State...</option>
-		                                    <option value="None">None</option>
-		                                    <option value="">-- UNITED STATES --</option>
-		                                    <option value="Alabama">Alabama</option>
-		                                    <option value="Alaska">Alaska</option>
-		                                    <option value="Arizona">Arizona</option>
-		                                    <option value="Arkansas">Arkansas</option>
-		                                    <option value="California">California</option>
-		                                    <option value="Colorado">Colorado</option>
-		                                    <option value="Connecticut">Connecticut</option>
-		                                    <option value="Delaware">Delaware</option>
-		                                    <option value="Florida">Florida</option>
-		                                    <option value="Georgia">Georgia</option>
-		                                    <option value="Hawaii">Hawaii</option>
-		                                    <option value="Idaho">Idaho</option>
-		                                    <option value="Illinois">Illinois</option>
-		                                    <option value="Indiana">Indiana</option>
-		                                    <option value="Iowa">Iowa</option>
-		                                    <option value="Kansas">Kansas</option>
-		                                    <option value="Kentucky">Kentucky</option>
-		                                    <option value="Louisiana">Louisiana</option>
-		                                    <option value="Maine">Maine</option>
-		                                    <option value="Maryland">Maryland</option>
-		                                    <option value="Massachusetts">Massachusetts</option>
-		                                    <option value="Michigan">Michigan</option>
-		                                    <option value="Minnesota">Minnesota</option>
-		                                    <option value="Mississippi">Mississippi</option>
-		                                    <option value="Missouri">Missouri</option>
-		                                    <option value="Montana">Montana</option>
-		                                    <option value="Nebraska">Nebraska</option>
-		                                    <option value="Nevada">Nevada</option>
-		                                    <option value="New Hampshire">New Hampshire</option>
-		                                    <option value="New Jersey">New Jersey</option>
-		                                    <option value="New Mexico">New Mexico</option>
-		                                    <option value="New York">New York</option>
-		                                    <option value="North Carolina">North Carolina</option>
-		                                    <option value="North Dakota">North Dakota</option>
-		                                    <option value="Ohio">Ohio</option>
-		                                    <option value="Oklahoma">Oklahoma</option>
-		                                    <option value="Oregon">Oregon</option>
-		                                    <option value="Pennsylvania">Pennsylvania</option>
-		                                    <option value="Rhode Island">Rhode Island</option>
-		                                    <option value="South Carolina">South Carolina</option>
-		                                    <option value="South Dakota">South Dakota</option>
-		                                    <option value="Tennessee">Tennessee</option>
-		                                    <option value="Texas">Texas</option>
-		                                    <option value="Utah">Utah</option>
-		                                    <option value="Vermont">Vermont</option>
-		                                    <option value="Virginia">Virginia</option>
-		                                    <option value="Washington">Washington</option>
-		                                    <option value="West Virginia">West Virginia</option>
-		                                    <option value="Wisconsin">Wisconsin</option>
-		                                    <option value="Wyoming">Wyoming</option>
-		                                    <option value="">-- CANADA --</option>
-		                                    <option value="Alberta">Alberta</option>
-		                                    <option value="British Columbia">British Columbia</option>
-		                                    <option value="Manitoba">Manitoba</option>
-		                                    <option value="New Brunswick">New Brunswick</option>
-		                                    <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
-		                                    <option value="Northwest Territories">Northwest Territories</option>
-		                                    <option value="Nova Scotia">Nova Scotia</option>
-		                                    <option value="Nunavut">Nunavut</option>
-		                                    <option value="Ontario">Ontario</option>
-		                                    <option value="Prince Edward Island">Prince Edward Island</option>
-		                                    <option value="Quebec">Quebec</option>
-		                                    <option value="Saskatchewan">Saskatchewan</option>
-		                                    <option value="Yukon Territory">Yukon Territory</option>
-		                                    <option value="">-- AUSTRALIA --</option>
-		                                    <option value="Australian Capital Territory">Australian Capital Territory</option>
-		                                    <option value="New South Wales">New South Wales</option>
-		                                    <option value="Northern Territory">Northern Territory</option>
-		                                    <option value="Queensland">Queensland</option>
-		                                    <option value="South Australia">South Australia</option>
-		                                    <option value="Tasmania">Tasmania</option>
-		                                    <option value="Victoria">Victoria</option>
-		                                    <option value="Western Australia">Western Australia</option>
-		                                  </select>
+		                                  <s:textfield name="city" placeholder=""/>
 		                                </div>
 		                              </div>
 		                            </li>
@@ -209,7 +112,7 @@
 		                              <div class="control-group">
 		                                <label class="control-label" for="inputZip">Zip/Postal Code <sup>*</sup></label>
 		                                <div class="controls">
-		                                  <input type="text" id="inputZip" placeholder="">
+		                                  <s:textfield name="inputZip" placeholder=""/>
 		                                </div>
 		                              </div>
 		                              <div class="control-group">
@@ -471,22 +374,7 @@
 		                              <div class="control-group">
 		                                <label class="control-label" for="inputTelephone">Telephone <sup>*</sup></label>
 		                                <div class="controls">
-		                                  <input type="text" id="inputTelephone" placeholder="">
-		                                </div>
-		                                <label class="radio b-label">
-		                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-		                                    Ship to this address 
-		                                </label>
-		                                <label class="radio b-label">
-		                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-		                                    different address 
-		                                </label>
-		                              </div>
-		                              <div class="control-group">
-		                                <label class="control-label" for="inputFax">Fax<sup>*</sup></label>
-		                                <div class="controls">
-		                                  <input type="text" id="inputFax" placeholder="">
-		                                  <strong class="green-t">* Required Fields</strong>
+		                                  <s:textfield name="phone" placeholder=""/>
 		                                </div>
 		                              </div>
 		                            </li>
@@ -502,6 +390,7 @@
 		                </div>
 		              </div>
 		            </div>
+		            <!--
 		            <div class="accordion-group">
 		              <div class="accordion-heading"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"> Shipping Information </a> </div>
 		              <div id="collapseThree" class="accordion-body collapse">
@@ -512,13 +401,13 @@
 		                              <div class="control-group">
 		                                <label class="control-label" for="inputFirstname">First Name <sup>*</sup></label>
 		                                <div class="controls">
-		                                  <input type="text" id="inputFirstname" placeholder="">
+		                                  <s:textfield name="inputFirstname" placeholder=""/>
 		                                </div>
 		                              </div>
 		                              <div class="control-group">
 		                                <label class="control-label" for="inputLastname">Last Name<sup>*</sup></label>
 		                                <div class="controls">
-		                                  <input type="text" id="inputLastname" placeholder="">
+		                                  <s:textfield name="inputLastname" placeholder=""/>
 		                                </div>
 		                              </div>
 		                              
@@ -527,13 +416,13 @@
 		                              <div class="control-group">
 		                                <label class="control-label" for="inputCompany">Company<sup>*</sup></label>
 		                                <div class="controls">
-		                                  <input type="text" id="inputCompany" placeholder="">
+		                                  <s:textfield name="inputCompany" placeholder=""/>
 		                                </div>
 		                              </div>
 		                              <div class="control-group">
 		                                <label class="control-label" for="inputEmail">Email Address<sup>*</sup></label>
 		                                <div class="controls">
-		                                  <input type="text" id="inputEmail" placeholder="">
+		                                  <s:textfield id="inputEmail" placeholder=""/>
 		                                </div>
 		                              </div>
 		                            </li>
@@ -541,7 +430,7 @@
 		                              <div class="control-group">
 		                                <label class="control-label" for="inputAddress">Address<sup>*</sup></label>
 		                                <div class="controls">
-		                                  <input type="text" id="inputAddress" placeholder="" class="address-field">
+		                                  <s:textfield name="inputAddress" placeholder="" class="address-field"/>
 		                                </div>
 		                              </div>
 		                            </li>
@@ -549,7 +438,7 @@
 		                              <div class="control-group">
 		                                <label class="control-label" for="inputCity">City <sup>*</sup></label>
 		                                <div class="controls">
-		                                  <input type="text" id="inputCity" placeholder="">
+		                                  <s:textfield name="inputCity" placeholder=""/>
 		                                </div>
 		                              </div>
 		                              <div class="control-group">
@@ -640,7 +529,7 @@
 		                              <div class="control-group">
 		                                <label class="control-label" for="inputZip">Zip/Postal Code <sup>*</sup></label>
 		                                <div class="controls">
-		                                  <input type="text" id="inputZip" placeholder="">
+		                                  <s:textfield name="inputZip" placeholder=""/>
 		                                </div>
 		                              </div>
 		                              <div class="control-group">
@@ -933,6 +822,7 @@
 		                </div>
 		              </div>
 		            </div>
+		            -->
 		            <div class="accordion-group">
 		              <div class="accordion-heading"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseForth"> Shipping Method </a> </div>
 		              <div id="collapseForth" class="accordion-body collapse">
@@ -949,20 +839,10 @@
 		                	<form class="form-horizontal">
 		                        <ul class="billing-form">
 		                            <li>   
-		                            	<div class="label-holder">
-		                                	<label class="radio b-label">
-		                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-		                                    Ship to this address 
-		                                </label>
-		                                <label class="radio b-label">
-		                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-		                                    different address 
-		                                </label>
-		                                </div>
 		                              <div class="control-group">
 		                                <label class="control-label" for="inputCardname">Name on Card<sup>*</sup></label>
 		                                <div class="controls">
-		                                  <input type="text" id="inputCardname" placeholder="">
+		                                  <s:textfield name="cardname" placeholder=""/>
 		                                </div>
 		                              </div>
 		                            </li>
@@ -971,9 +851,9 @@
 		                                <label class="control-label" for="inputCardtype">Credit Card Type <sup>*</sup></label>
 		                                <div class="controls">
 		                                  <select name="state" size="1">
-		                                    <option selected value="">Please select one</option>
-		                                    <option selected value="">Please select Two</option>
-		                                    <option selected value="">Please select Three</option>
+		                                    <option selected="selected" value="">Please select one</option>
+		                                    <option value="">Please select Two</option>
+		                                    <option value="">Please select Three</option>
 		                                  </select>
 		                                </div>
 		                              </div>
@@ -982,7 +862,7 @@
 		                              <div class="control-group">
 		                                <label class="control-label" for="inputCreditcardnum">Credit Card Number  <sup>*</sup></label>
 		                                <div class="controls">
-		                                  <input type="text" id="inputCreditcardnum" placeholder="">
+		                                  <s:textfield name="creditcardnum" placeholder=""/>
 		                                </div>
 		                              </div>
 		                              
@@ -992,15 +872,28 @@
 		                                <label class="control-label" for="inputExpirationdate">Expiration Date<sup>*</sup></label>
 		                                <div class="controls">
 		                                  <select name="state" size="1" class="month-list">
-		                                    <option selected value="">Month</option>
-		                                    <option selected value="">Month</option>
-		                                    <option selected value="">Month</option>
+		                                    <option selected="selected" value="">January</option>
+		                                    <option value="">February</option>
+		                                    <option value="">March</option>
+		                                    <option value="">April</option>
+		                                    <option value="">May</option>
+		                                    <option value="">June</option>
+		                                    <option value="">July</option>
+		                                    <option value="">August</option>
+		                                    <option value="">September</option>
+		                                    <option value="">October</option>
+		                                    <option value="">November</option>
+		                                    <option value="">December</option>
+		                                    
 		                                  </select>
+		                                  <!--
 		                                  <select name="state" size="1" class="year-list">
 		                                    <option selected value="">Year</option>
 		                                    <option selected value="">Year</option>
 		                                    <option selected value="">Year</option>
 		                                  </select>
+		                                  -->
+		                                  <s:textfield name="state" placeholder="year" ></s:textfield>
 		                                </div>
 		                              </div>
 		                            </li>
@@ -1008,7 +901,7 @@
 		                              <div class="control-group">
 		                                <label class="control-label" for="inputCardVerification"> Card Verification Number <sup>*</sup></label>
 		                                <div class="controls">
-		                                  <input type="text" id="inputCardVerification" placeholder="">
+		                                  <s:textfield name="inputCardVerification" placeholder=""/>
 		                                  <strong class="green-t">* Required Fields</strong>
 		                                </div>
 		                              </div>
@@ -1077,7 +970,7 @@
 		        </section>
 		        <section class="span3 first">
 		          <div class="side-holder">
-		            <div class="r-title-bar"> <strong><a href="#">Write Your Own Review > </a></strong> </div>
+		            <div class="r-title-bar"> <strong><a href="#">Write Your Own Review</a></strong> </div>
 		            <ul class="review-list">
 		              <li><a href="#">Billing Information</a></li>
 		              <li><a href="#">Shipping Information</a></li>
