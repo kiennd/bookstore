@@ -4,6 +4,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <header id="main-header">
+<script>
+function formSubmit()
+{
+document.getElementById("frm1").submit();
+}
+</script>
 	<section class="container-fluid container">
 		<section class="row-fluid">
 			<section class="span4">
@@ -21,7 +27,7 @@
 				<div class="search-bar">
 				<form action = "filter">		
 					<input name="title" type="text" value="search entire store here..." />
-					<input type="button" value="Search" />
+					<input type="button" onclick="formSubmit()" value="Search" />
 				</form>
 				</div>
 			</section>
