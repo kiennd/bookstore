@@ -8,12 +8,6 @@
 <%@include file="head.jsp"%>
 </head>
 <body>
-	<%
-		User user = (User) session.getAttribute("user");
-		if (user == null) {
-			//response.sendRedirect("login.jsp");
-		}
-	%>
 	<!-- Start Main Wrapper -->
 	<div class="wrapper">
 		<!-- Start Main Header -->
