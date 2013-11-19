@@ -44,6 +44,7 @@
 								totalPrice += cartlist2.elementAt(i).getBook().getPrice()*cartlist2.elementAt(i).getQuantity();
 							}
 						}
+						session.setAttribute("totalPrice", totalPrice);
 						
 					%>
 					<div class="btn-group">
