@@ -72,34 +72,64 @@
 		<h2>WELCOME TO Hackintosh BookStore.</h2>
 		<p>Offering a wide selection of books on thousands of topics at
 			low prices to satisfy any book-lover!</p>
-		</section> </section> <section class="row-fluid features-books"> <section
-			class="span12 m-bottom">
-		<div class="heading-bar">
-			<h2>Sách bán chạy</h2>
-			<span class="h-line"></span>
-		</div>
-		<div class="slider1">
-			<s:iterator value="bestSellingBooks">
-				<div class="slide">
-					<a href="#"><img src="images/books/${imageurl}" alt=""
-						class="pro-img" /></a> <span class="title" style="height: 50px;"><a
-						href="book-detail.html"><s:property value="title" /></a></span> <span
-						class="rating-bar"><img src="images/rating-star.png"
-						alt="Rating Star" /></span>
-					<div class="cart-price">
-						<a class="cart-btn2" href="cart.html">Add to Cart</a> <span
-							class="price">Gia: ${price} </span>
-					</div>
+		</section> </section> 
+		
+		
+		
+		<section class="row-fluid features-books"> 
+			<section class="span12 m-bottom">
+				<div class="heading-bar">
+					<h2>Sách bán chạy</h2>
+					<span class="h-line"></span>
 				</div>
-			</s:iterator>
-
-		</div>
-
-		</section> </section> <!-- End BX Slider holder --> <!-- Start Featured Author --> <section
+				<div class="slider1">
+					<s:iterator value="bestSellingBooks">
+						<div class="slide">
+							<a href="#"><img src="images/books/${imageurl}" alt=""
+								class="pro-img" /></a> <span class="title" style="height: 50px;"><a
+								href="book-detail.html"><s:property value="title" /></a></span> <span
+								class="rating-bar"><img src="images/rating-star.png"
+								alt="Rating Star" /></span>
+							<div class="cart-price">
+								<a class="cart-btn2" href="cart.html">Add to Cart</a> <span
+									class="price">Gia: ${price} </span>
+							</div>
+						</div>
+					</s:iterator>
+				</div>
+			</section>
+		 </section>
+		 
+		 <section class="row-fluid features-books"> 
+			<section class="span12 m-bottom">
+				<div class="heading-bar">
+					<h2>Sách Mới</h2>
+					<span class="h-line"></span>
+				</div>
+				<div class="slider1"  style="height: 700px;">
+					<s:iterator value="newBooks" >
+						<div class="slide">
+							<a href="#"><img src="images/books/${imageurl}" alt=""
+								class="pro-img" height="300" width="200" /></a> <span class="title" style="height: 50px;"><a
+								href="book-detail.html"><s:property value="title" /></a></span> <span
+								class="rating-bar"><img src="images/rating-star.png"
+								alt="Rating Star" /></span>
+							<div class="cart-price">
+								<a class="cart-btn2" href="cart.html">Add to Cart</a> <span
+									class="price">Gia: ${price} </span>
+							</div>
+						</div>
+					</s:iterator>
+				</div>
+			</section>
+		 </section>
+		 
+		 
+		 
+		  <!-- End BX Slider holder --> <!-- Start Featured Author --> <section
 			class="row-fluid m-bottom"> <section class="span9">
-
 		<div class="heading-bar">
-			<h2>Tác giả của tuần</h2>
+			<h2>TÁC GIẢ ĐƯỢC QUAN TÂM</h2>
 			<span class="h-line"></span>
 		</div>
 
@@ -110,7 +140,6 @@
 						src="images/authors/${authorHightLight.imageLink}" alt=""
 						height="150" width="150" /></a></span>
 				<div class="author-det-box">
-
 					<div class="ico-holder">
 						<div id="socialicons" class="hidden-phone">
 							<a id="social_linkedin" class="social_active" href="#"
@@ -124,10 +153,14 @@
 					<div class="author-det">
 						<span class="title2">${authorHightLight.name}</span>
 						<ul class="books-list">
-							<s:iterator value="authorBooks">
-								<li><a href="book-detail.html"><img
-										src="images/books/${imageurl}" alt="" height="83" width="59" /></a></li>
-							</s:iterator>
+							<div class="slider8">
+								<s:iterator value="authorBooks">
+									<div class="slide">
+										<li><a href="book-detail.html"><img
+											src="images/books/${imageurl}" alt="" height="83" width="59" /></a></li>
+									</div>
+								</s:iterator>
+							</div>
 						</ul>
 					</div>
 				</div>
