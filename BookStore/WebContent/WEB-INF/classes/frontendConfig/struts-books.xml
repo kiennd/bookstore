@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="bookfiltersearch" namespace="/" extends="struts-default">
+		<action name="filter" class = "control.frontend.SearchFilterAction" method = "filterBook">
+			<result name ="success">/filterSearchResult.jsp</result>
+		</action>
+		<action name="search" class = "control.frontend.SearchFilterAction" method = "searchBook">
+			<result name ="success">/filterSearchResult.jsp</result>
+		</action>
+	</package>
+</struts>

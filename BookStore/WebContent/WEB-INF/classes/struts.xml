@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.custom.i18n.resources" value="ApplicationResources" />
+	
+	<include file="backendConfig/struts-admin.xml"></include>
+	<include file="backendConfig/struts-user.xml"></include>
+	<include file="backendConfig/struts-category.xml"></include>
+	<include file="backendConfig/struts-paymentMethod.xml"></include>
+	<include file="backendConfig/struts-order.xml"></include>
+	<include file="backendConfig/struts-reservation.xml"></include>
+	<include file="backendConfig/struts-book.xml"></include>
+ 	<include file="backendConfig/struts-author.xml"></include>
+	<include file="backendConfig/struts-publisher.xml"></include> 
+	<include file="backendConfig/struts-role.xml"></include>
+	<include file="backendConfig/struts-store.xml"></include>
+
+	<include file="frontendConfig/struts-index.xml"></include>
+	<include file="frontendConfig/struts-books.xml"></include>
+	
+</struts>

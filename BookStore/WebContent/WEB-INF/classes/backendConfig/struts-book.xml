@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="book" namespace="/admin/book" extends="struts-default">
+		<action name="index" class="control.backend.BookAction" method="execute">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="store">
+				<param name="operationMode">RETRIEVE</param>
+			</interceptor-ref>
+			<result name="success">index.jsp</result>
+		</action>
+		<action name="edit" class="control.backend.BookAction" method="edit">
+			<result name="success">edit.jsp</result>
+		</action>
+		<action name="save" class="control.backend.BookAction" method="saveBook">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="store">
+				<param name="operationMode">STORE</param>
+			</interceptor-ref>
+			<result name="success" type="redirectAction">index</result>
+		</action>
+		<action name="delete" class="control.backend.BookAction"
+			method="deleteBook">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="store">
+				<param name="operationMode">STORE</param>
+			</interceptor-ref>
+			<result name="success" type="redirectAction">index</result>
+		</action>
+		
+		<action name="newShow" class="control.backend.BookAction"
+			method="newShow">
+			<result name="success" >new.jsp</result>
+		</action>
+		
+		<action name="newSave" class="control.backend.BookAction" method="newBook">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="store">
+				<param name="operationMode">STORE</param>
+			</interceptor-ref>
+			
+			<interceptor-ref name="exception" />
+			<interceptor-ref name="i18n" />
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">image/gif,image/jpeg,image/png,image/bmp,application/msword,text/plain,application/pdf,application/ms-excel,application/vnd.ms-excel,image/bitmap</param>
+				<param name="maximumSize">10240000</param>
+			</interceptor-ref>
+			<interceptor-ref name="params">
+				<param name="excludeParams">dojo\..*,^struts\..*</param>
+			</interceptor-ref>
+			<interceptor-ref name="validation">
+				<param name="excludeMethods">input,back,cancel,browse</param>
+			</interceptor-ref>
+			<interceptor-ref name="workflow">
+				<param name="excludeMethods">input,back,cancel,browse</param>
+			</interceptor-ref>
+			
+			<result name="success" type="redirectAction">index</result>
+			<result name="error">new.jsp</result>
+		</action>
+
+
+
+	</package>
+
+</struts>

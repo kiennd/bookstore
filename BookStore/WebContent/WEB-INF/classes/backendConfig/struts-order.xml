@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="order" namespace="/admin/order" extends="struts-default">
+		<action name="index" class="control.backend.OrderAction" method="listOrder">
+			<result name="success">index.jsp</result>
+		</action>
+		<action name="editOrder" class="control.backend.OrderAction" method="editOrder">
+			<result name="success">edit.jsp</result>
+		</action>
+		<action name="saveOrder" class="control.backend.OrderAction" method="saveOrder">
+			<result name="success" type="redirect">index</result>
+		</action>
+	</package>
+
+</struts>
