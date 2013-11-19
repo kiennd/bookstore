@@ -5,7 +5,7 @@
       <section class="row-fluid">
         <section class="span6">
           <ul class="top-nav">
-            <li><a href="index.html" class="active">Home page</a></li>
+            <li><a href="<%=request.getContextPath()%>/index" class="active">Home page</a></li>
             <li><a href="grid-view.html">Online Store</a></li>
             <li><a href="blog.html">Blog</a></li>
             <li><a href="shortcodes.html">Short Codes</a></li>

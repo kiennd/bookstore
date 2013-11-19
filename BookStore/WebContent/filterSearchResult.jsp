@@ -25,8 +25,6 @@
 		boolean isFirst = true;
 		Vector<Book> newBooks = (Vector<Book>) request
 				.getAttribute("newBooks");
-		Vector<Category> categories = (Vector<Category>) request
-				.getAttribute("categories");
 		Vector<Author> authors = (Vector<Author>) request
 				.getAttribute("authors");
 	%>
