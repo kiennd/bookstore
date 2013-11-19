@@ -24,19 +24,7 @@
 			<span class="h-line"></span>
 		</div>
 		<!-- Start Main Content --> <section class="span9 first"> <!-- Start Ad Slider Section -->
-		<div class="blog-sec-slider">
-			<div class="slider5">
-				<div class="slide">
-					<a href="#"><img src="images/image22.jpg" alt="" /></a>
-				</div>
-				<div class="slide">
-					<a href="#"><img src="images/image36.jpg" alt="" /></a>
-				</div>
-				<div class="slide">
-					<a href="#"><img src="images/image22.jpg" alt="" /></a>
-				</div>
-			</div>
-		</div>
+
 		<!-- End Ad Slider Section --> <!-- Strat Book Detail Section --> <section
 			class="b-detail-holder"> <article class="title-holder">
 		<div class="span6">
@@ -63,7 +51,7 @@
 
 			<!-- Strat Book Overview Section -->
 			<div class="span6">
-				<strong class="title">Quick Overview</strong>
+				<strong class="title">Thông tin sách</strong>
 				<P>${bookBean.description}</P>
 				<p>
 					Availability: <a href="#">In stock</a>
@@ -73,7 +61,7 @@
 					<ul>
 						<li><input name="" type="text" /></li>
 						<li class="b-price">${bookBean.price}</li>
-						<li><a href="cart.html" class="more-btn">+ Add to Cart</a></li>
+						<li><a href="<%=request.getContextPath()%>/addtocart.jsp?id=${id}" class="more-btn">+ Add to Cart</a></li>
 					</ul>
 					<a href="#">Add to Wishlist</a>
 				</div>
@@ -116,7 +104,7 @@
 					<span class="rating-bar"><img src="images/rating-star.png"
 						alt="Rating Star" /></span>
 					<div class="cart-price">
-						<a class="cart-btn2" href="cart.html">Add to Cart</a> <span
+						<a class="cart-btn2" href="<%=request.getContextPath()%>/addtocart.jsp?id=${id}">Add to Cart</a> <span
 							class="price">${price}</span>
 					</div>
 				</s:iterator>
@@ -130,7 +118,7 @@
 					<span class="rating-bar"><img src="images/rating-star.png"
 						alt="Rating Star" /></span>
 					<div class="cart-price">
-						<a class="cart-btn2" href="cart.html">Add to Cart</a> <span
+						<a class="cart-btn2" href="<%=request.getContextPath()%>/addtocart.jsp?id=${id}">Add to Cart</a> <span
 							class="price">${price}</span>
 					</div>
 				</s:iterator>
@@ -144,7 +132,7 @@
 					<span class="rating-bar"><img src="images/rating-star.png"
 						alt="Rating Star" /></span>
 					<div class="cart-price">
-						<a class="cart-btn2" href="cart.html">Add to Cart</a> <span
+						<a class="cart-btn2" href="<%=request.getContextPath()%>/addtocart.jsp?id=${id}">Add to Cart</a> <span
 							class="price">${price}</span>
 					</div>
 				</s:iterator>
@@ -200,10 +188,6 @@
 		<a href="#" class="grey-btn left-btn">Write Your Own Review</a> </figure> </section> <!-- End Customer Reviews Section -->
 		</section> <!-- Strat Book Detail Section --> </section> <!-- End Main Content --> <!-- Start Main Side Bar -->
 		<section class="span3">
-		<div class="side-holder">
-			<article class="banner-ad"> <img src="images/image20.jpg"
-				alt="Banner Ad" /></article>
-		</div>
 
 		<!-- Start Shop by Section -->
 		<div class="side-holder">
@@ -212,94 +196,32 @@
 			<div class="side-inner-holder">
 				<strong class="title">Category</strong>
 				<ul class="side-list">
-					<li><a href="grid-view.html">Fiction (15)</a></li>
-					<li><a href="grid-view.html">Healthcare (15)</a></li>
-					<li><a href="grid-view.html">Technology (15)</a></li>
-					<li><a href="grid-view.html">Science(15)</a></li>
+					<%
+						for (int i = 0; i < categories.size(); i++) {
+							Category c = categories.elementAt(i);
+					%>
+					<li><a href="filter?categoryid=<%=c.getId()%>"><%=c.getName()%></a></li>
+					<%
+						}
+					%>
 				</ul>
 				<strong class="title">Price</strong>
 				<ul class="side-list">
-					<li><a href="#">$0.00 - $10,00.00 (13)</a></li>
-					<li><a href="#">$10,00.00 - $20,00.00 (2)</a></li>
+					<li><a href="filter?priceMin=100000&priceMax=200000">$100.000
+							- $200.000</a></li>
+					<li><a href="filter?priceMin=200000&priceMax=300000">$200.000
+							- $300.000</a></li>
+					<li><a href="filter?priceMin=300000&priceMax=400000">$400.000
+							- $500.000</a></li>
+					<li><a href="filter?priceMin=400000&priceMax=500000">$500.000
+							- $600.000</a></li>
 				</ul>
-				<strong class="title">Author</strong>
-				<ul class="side-list">
-					<li><a href="#">Khalid Hoessini (9)</a></li>
-					<li><a href="#">William Blake (2)</a></li>
-					<li><a href="#">Anna Kathrinena (1)</a></li>
-					<li><a href="#">Gray Alvin (3)</a></li>
-				</ul>
+				
 			</div>
 			</article>
 		</div>
 		<!-- End Shop by Section --> <!-- Start Latest Reviews Section -->
-		<div class="side-holder">
-			<article class="l-reviews">
-			<h2>Latest Reviews</h2>
-			<div class="side-inner-holder">
-				<article class="r-post">
-				<div class="r-img-title">
-					<img src="images/image21.jpg" />
-					<div class="r-det-holder">
-						<strong class="r-author"><a href="#">The
-								Kite Runner</a></strong> <span class="r-by">by Khalid Hoessini</span> <span
-							class="rating-bar"><img src="images/rating-star.png"
-							alt="Rating Star" /></span>
-					</div>
-				</div>
-				<span class="r-type">Vivamus bibendum massa</span>
-				<p>“ Suspendisse tortor lacus, suscipit eget pharetra sed,
-					ornare sed elit. Curabitur mollis, justo sit amet fermentum ”</p>
-				<span class="r-author">Review by BookShoppe’</span> </article>
-				<article class="r-post">
-				<div class="r-img-title">
-					<img src="images/image21.jpg" />
-					<div class="r-det-holder">
-						<strong class="r-author"><a href="#">The
-								Kite Runner</a></strong> <span class="r-by">by Khalid Hoessini</span> <span
-							class="rating-bar"><img src="images/rating-star.png"
-							alt="Rating Star" /></span>
-					</div>
-				</div>
-				<span class="r-type">Vivamus bibendum massa</span>
-				<p>“ Suspendisse tortor lacus, suscipit eget pharetra sed,
-					ornare sed elit. Curabitur mollis, justo sit amet fermentum ”</p>
-				<span class="r-author">Review by BookShoppe’</span> </article>
-			</div>
-			</article>
-		</div>
-		<!-- End Latest Reviews Section --> <!-- Start Price Range Section -->
-		<div class="side-holder">
-			<article class="price-range">
-			<h2>Price Range</h2>
-			<div class="side-inner-holder">
-				<p>Select the price range for better search</p>
-				<div id="slider-range"></div>
-				<p>
-					<input type="text" id="amount" class="r-input">
-				</p>
-			</div>
-			</article>
-		</div>
-		<!-- End Price Range Section --> <!-- Start Community Poll Section -->
-		<div class="side-holder">
-			<article class="price-range">
-			<h2>Community Poll</h2>
-			<div class="side-inner-holder">
-				<p>Who is your favourite American author?</p>
-				<label class="radio"> <input type="radio"
-					name="optionsRadios" id="optionsRadios1" value="option1" checked>
-						Jane Austin </label> <label class="radio"> <input type="radio"
-					name="optionsRadios" id="optionsRadios2" value="option2">
-						William Blake </label> <label class="radio"> <input type="radio"
-					name="optionsRadios" id="optionsRadios1" value="option1" checked>
-						Keith Urban </label> <label class="radio"> <input type="radio"
-					name="optionsRadios" id="optionsRadios2" value="option2">
-						Anna Smith </label> <a href="#" class="vote-btn">Vote</a>
-			</div>
-			</article>
-		</div>
-		<!-- End Community Poll Section --> </section> <!-- End Main Side Bar --> </section> </section>
+		</section> <!-- End Main Side Bar --> </section> </section>
 		<!-- End Main Content Holder -->
 
 

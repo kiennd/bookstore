@@ -129,7 +129,7 @@
 		</span> <span class="rating-bar"><img src="images/rating-star.png"
 			alt="Rating Star" /></span>
 		<div class="cart-price">
-			<a class="cart-btn2" href="cart.html">Add to Cart</a> <span
+			<a class="cart-btn2" href="<%=request.getContextPath()%>/addtocart.jsp?id=${id}">Add to Cart</a> <span
 				class="price">Gia: <%=b.getPrice()%></span>
 		</div>
 		</figure> <%-- <s:if test="%{#stat.count%3==0}">
@@ -174,16 +174,12 @@
 
 			<ul class="product_view">
 				<li>View as:</li>
-				<li><a class="grid-view" href="cart.html">Grid View</a></li>
+				<li><a class="grid-view" href="<%=request.getContextPath()%>/addtocart.jsp?id=${id}">Grid View</a></li>
 				<li><a class="list-view" href="list-view.html">List View</a></li>
 			</ul>
 		</div>
 		<!-- End Grid View Section --> </section> <!-- End Main Content --> <!-- Start Main Side Bar -->
 		<section class="span3">
-		<div class="side-holder">
-			<article class="banner-ad"> <img src="images/image20.jpg"
-				alt="Banner Ad" /></article>
-		</div>
 
 		<!-- Start Shop by Section -->
 		<div class="side-holder">

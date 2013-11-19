@@ -34,10 +34,10 @@
 						<div class="bb-custom-content">
 							<div class="slide-inner">
 								<div class="span4 book-holder">
-									<a href="book-detail.html"> <img
+									<a href="<%=request.getContextPath()%>/detailBook?id=${id}"> <img
 										src="images/books/${imageurl}" /></a>
 									<div class="cart-price">
-										<a class="cart-btn2" href="#">Add to Cart</a> <span
+										<a class="cart-btn2" href="<%=request.getContextPath()%>/addtocart.jsp?id=${id}">Add to Cart</a> <span
 											class="price"> Gia : ${price} </span>
 									</div>
 								</div>
@@ -48,13 +48,13 @@
 									<strong class="title"><s:property value="author.name" /></strong>
 									<span class="rating-bar"> <img
 										src="images/raing-star2.png" alt="Rating Star" />
-									</span> <a href="book-detail.html" class="shop-btn">SHOP NOW</a>
+									</span> <a href="<%=request.getContextPath()%>/addtocart.jsp?id=${id}" class="shop-btn">SHOP NOW</a>
 									<div class="cap-holder">
 										<p>
 											<img src="images/image27.png" alt="Best Choice" align="right" />
 											<c:out value="${fn:substring(description, 0, 200)}... " />
 										</p>
-										<a href="book-detail.html">Read More</a>
+										<a href="<%=request.getContextPath()%>/detailBook?id=${id}">Read More</a>
 									</div>
 								</div>
 							</div>
@@ -87,11 +87,11 @@
 						<div class="slide">
 							<a href="#"><img src="images/books/${imageurl}" alt=""
 								class="pro-img" /></a> <span class="title" style="height: 50px;"><a
-								href="book-detail.html"><s:property value="title" /></a></span> <span
+								href="<%=request.getContextPath()%>/detailBook?id=${id}"><s:property value="title" /></a></span> <span
 								class="rating-bar"><img src="images/rating-star.png"
 								alt="Rating Star" /></span>
 							<div class="cart-price">
-								<a class="cart-btn2" href="cart.html">Add to Cart</a> <span
+								<a class="cart-btn2" href="<%=request.getContextPath()%>/addtocart.jsp?id=${id}">Add to Cart</a> <span
 									class="price">Gia: ${price} </span>
 							</div>
 						</div>
@@ -111,11 +111,11 @@
 						<div class="slide">
 							<a href="#"><img src="images/books/${imageurl}" alt=""
 								class="pro-img" height="300" width="200" /></a> <span class="title" style="height: 50px;"><a
-								href="book-detail.html"><s:property value="title" /></a></span> <span
+								href="<%=request.getContextPath()%>/detailBook?id=${id}"><s:property value="title" /></a></span> <span
 								class="rating-bar"><img src="images/rating-star.png"
 								alt="Rating Star" /></span>
 							<div class="cart-price">
-								<a class="cart-btn2" href="cart.html">Add to Cart</a> <span
+								<a class="cart-btn2" href="<%=request.getContextPath()%>/addtocart.jsp?id=${id}">Add to Cart</a> <span
 									class="price">Gia: ${price} </span>
 							</div>
 						</div>
@@ -156,7 +156,7 @@
 							<div class="slider8">
 								<s:iterator value="authorBooks">
 									<div class="slide">
-										<li><a href="book-detail.html"><img
+										<li><a href="<%=request.getContextPath()%>/detailBook?id=${id}"><img
 											src="images/books/${imageurl}" alt="" height="83" width="59" /></a></li>
 									</div>
 								</s:iterator>
@@ -169,15 +169,15 @@
 			<div class="right">
 				<s:iterator value="authorBooks" begin="0" end="0">
 					<div class="current-book">
-						<strong class="title"><a href="book-detail.html">${name}</a></strong>
+						<strong class="title"><a href="<%=request.getContextPath()%>/detailBook?id=${id}">${name}</a></strong>
 						<p>${fn:substring(description, 0, 120)}...</p>
 						<div class="cart-price">
-							<a href="cart.html" class="cart-btn2">Add to Cart</a> <span
+							<a href="<%=request.getContextPath()%>/addtocart.jsp?id=${id}" class="cart-btn2">Add to Cart</a> <span
 								class="price">Gía: ${price}</span>
 						</div>
 					</div>
 					<div class="c-b-img">
-						<a href="book-detail.html"><img src="images/books/${imageurl}"
+						<a href="<%=request.getContextPath()%>/detailBook?id=${id}"><img src="images/books/${imageurl}"
 							alt="" /></a>
 					</div>
 				</s:iterator>
@@ -190,10 +190,10 @@
 		</div>
 		<div class="slider2">
 			<div class="slide">
-				<a href="book-detail.html"><img src="images/image15.jpg" alt="" /></a>
+				<a href="<%=request.getContextPath()%>/detailBook?id=${id}"><img src="images/image15.jpg" alt="" /></a>
 				<div class="slide2-caption">
 					<div class="left">
-						<span class="title"><a href="book-detail.html">Thousand
+						<span class="title"><a href="<%=request.getContextPath()%>/detailBook?id=${id}">Thousand
 								Splendid Miles</a></span> <span class="author-name">by Khalid
 							Housseini</span>
 					</div>
@@ -204,10 +204,10 @@
 				</div>
 			</div>
 			<div class="slide">
-				<a href="book-detail.html"><img src="images/image15.jpg" alt="" /></a>
+				<a href="<%=request.getContextPath()%>/detailBook?id=${id}"><img src="images/image15.jpg" alt="" /></a>
 				<div class="slide2-caption">
 					<div class="left">
-						<span class="title"><a href="book-detail.html">Thousand
+						<span class="title"><a href="<%=request.getContextPath()%>/detailBook?id=${id}">Thousand
 								Splendid Miles</a></span> <span class="author-name">by Khalid
 							Housseini</span>
 					</div>
@@ -218,10 +218,10 @@
 				</div>
 			</div>
 			<div class="slide">
-				<a href="book-detail.html"><img src="images/image15.jpg" alt="" /></a>
+				<a href="<%=request.getContextPath()%>/detailBook?id=${id}"><img src="images/image15.jpg" alt="" /></a>
 				<div class="slide2-caption">
 					<div class="left">
-						<span class="title"><a href="book-detail.html">Thousand
+						<span class="title"><a href="<%=request.getContextPath()%>/detailBook?id=${id}">Thousand
 								Splendid Miles</a></span> <span class="author-name">by Mr. Khalid </span>
 					</div>
 					<div class="right">
