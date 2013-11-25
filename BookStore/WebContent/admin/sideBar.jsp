@@ -39,7 +39,7 @@
 		<ul id="main-nav">
 			<!-- Accordion Menu -->
 
-			<li><a href="http://www.google.com"
+			<li><a href="<%=request.getContextPath()%>/admin"
 				class="nav-top-item no-submenu"> <!-- Add the class "no-submenu" to menu items with no sub menu -->
 					Dashboard
 			</a></li>

@@ -122,14 +122,14 @@
  		} else {
  			out.print("<figure class=\"span4 slide \">");
  		}
- %> <a href="book-detail.html"> <img
+ %> <a href="<%=request.getContextPath()%>/detailBook?id=<%=b.getId()%>"> <img
 			src="images/books/<%=b.getImageurl()%>" alt="" /></a> <span
 			class="title" style="height: 50px;"> <a
-			href="book-detail.html"><%=b.getTitle()%></a>
+			href="<%=request.getContextPath()%>/detailBook?id=<%=b.getId() %>"><%=b.getTitle()%></a>
 		</span> <span class="rating-bar"><img src="images/rating-star.png"
 			alt="Rating Star" /></span>
 		<div class="cart-price">
-			<a class="cart-btn2" href="<%=request.getContextPath()%>/addtocart.jsp?id=${id}">Add to Cart</a> <span
+			<a class="cart-btn2" href="<%=request.getContextPath()%>/addtocart.jsp?id=<%=b.getId() %>">Add to Cart</a> <span
 				class="price">Gia: <%=b.getPrice()%></span>
 		</div>
 		</figure> <%-- <s:if test="%{#stat.count%3==0}">

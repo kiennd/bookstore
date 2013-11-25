@@ -24,7 +24,7 @@ public class IndexAction extends ActionSupport {
 	public String initIndex() {
 		BookDAO bd = new BookDAO();
 		newBooks = bd.getNewBooks(10);
-		bestSellingBooks = bd.getBestSellingBooks(10);
+		bestSellingBooks = bd.getBestSellingBook(10);
 		
 		AuthorDAO ad = new AuthorDAO();
 		authorHightLight = ad.getAuthorHightLight();

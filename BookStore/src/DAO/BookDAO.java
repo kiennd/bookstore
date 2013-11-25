@@ -214,6 +214,57 @@ public class BookDAO {
 
 		return result;
 	}
+	
+	public Vector<Book> getBestSellingBook(int numBook){
+		Vector<Book> result = new Vector<>();
+		try {
+			String sql = "select b.*,c.*,p.*,a.* " + "From tblbook as b "
+					+ "Inner join tblcategory as c on c.id = b.categoryid "
+					+ "Inner join tblpublisher as p on p.id = b.publisherid "
+					+ "Inner join tblauthor as a on a.id = b.authorid "
+					+ " order by b.id";
+			conn = DBConnection.getConn();
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			int count = 0;
+
+			while (rs.next() && count < numBook) {
+				count++;
+				Book b = new Book();
+				Category c = new Category();
+				c.setId(rs.getInt("b.categoryid"));
+				c.setName(rs.getString("c.name"));
+
+				Publisher p = new Publisher();
+				p.setId(rs.getInt("b.publisherid"));
+				p.setAddress(rs.getString("p.address"));
+				p.setDescription(rs.getString("p.description"));
+				p.setName(rs.getString("p.name"));
+
+				Author a = new Author();
+				a.setId(rs.getInt("a.id"));
+				a.setName(rs.getString("a.name"));
+				a.setDescription(rs.getString("a.description"));
+				a.setDateOfBirth(rs.getDate("a.dateOfBirth"));
+
+				b.setAuthor(a);
+				b.setCategory(c);
+				b.setPublisher(p);
+				b.setDescription(rs.getString("b.description"));
+				b.setId(rs.getInt("b.id"));
+				b.setImageurl(rs.getString("b.imageurl"));
+				b.setPrice(rs.getLong("b.price"));
+				b.setTitle(rs.getString("b.title"));
+				result.add(b);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
 
 	public Vector<Book> getBestSellingBooks(int numBook) {
 
@@ -221,7 +272,7 @@ public class BookDAO {
 		try {
 			String sql = "select  sum(quantity) as sum,bookid from tblOrder "
 					+ "Group by bookid " + "order by sum desc " + "limit "
-					+ numBook;
+					+ 10;
 			conn = DBConnection.getConn();
 			Statement st = conn.createStatement();
 			ResultSet rs2 = st.executeQuery(sql);
@@ -435,7 +486,4 @@ public class BookDAO {
 		return books;
 	}
 
-	public static void main(String[] args) {
-		new BookDAO().getBestSellingBooks(2);
-	}
 }
