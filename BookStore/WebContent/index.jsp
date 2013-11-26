@@ -183,7 +183,7 @@
 				</s:iterator>
 			</div>
 		</div>
-		</section> <section class="span3 best-sellers">
+		</section> <%-- <section class="span3 best-sellers">
 		<div class="heading-bar">
 			<h2>Best Sellers</h2>
 			<span class="h-line"></span>
@@ -231,7 +231,7 @@
 				</div>
 			</div>
 		</div>
-		</section> </section> <!-- End Featured Author --> <section class="row-fluid m-bottom">
+		</section> --%> </section> <!-- End Featured Author --> <section class="row-fluid m-bottom">
 		<!-- Start Blog Section --> 
 		
 		

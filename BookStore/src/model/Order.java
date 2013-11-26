@@ -14,7 +14,7 @@ public class Order implements Serializable{
 	private PaymentMethod paymentMethod;
 	private float discount;
 	private Date orderDate;
-	private int cardnumber, cardverificationnumber;
+	private long cardnumber, cardverificationnumber;
 	private String nameoncard;
 	private Date expirationdate;
 	
@@ -68,14 +68,18 @@ public class Order implements Serializable{
 		this.orderDate = orderDate;
 	}
 	
-	public int getCardnumber() {
+	
+	public long getCardnumber() {
 		return cardnumber;
 	}
-	public void setCardnumber(int cardnumber) {
+	public void setCardnumber(long cardnumber) {
 		this.cardnumber = cardnumber;
 	}
-	public int getCardverificationnumber() {
+	public long getCardverificationnumber() {
 		return cardverificationnumber;
+	}
+	public void setCardverificationnumber(long cardverificationnumber) {
+		this.cardverificationnumber = cardverificationnumber;
 	}
 	public void setCardverificationnumber(int cardverificationnumber) {
 		this.cardverificationnumber = cardverificationnumber;

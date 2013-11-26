@@ -68,8 +68,8 @@ public class OrderDAO {
 			pstm.setFloat(6, order.getDiscount());
 			pstm.setInt(7, order.getPrice());
 			pstm.setInt(8, order.getQuantity());
-			pstm.setInt(9, order.getCardnumber());
-			pstm.setInt(10, order.getCardverificationnumber());
+			pstm.setLong(9, order.getCardnumber());
+			pstm.setLong(10, order.getCardverificationnumber());
 			pstm.setString(11, order.getNameoncard()==null?"":order.getNameoncard());
 
 			

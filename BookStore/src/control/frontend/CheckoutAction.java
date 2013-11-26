@@ -21,7 +21,7 @@ public class CheckoutAction extends ActionSupport implements SessionAware{
 	private User user;
 	private Vector<PaymentMethod> pmlist;
 	private String cardname;
-	private int creditcardnum;
+	private long creditcardnum;
 	private int pmid;
 	                    
 	private Map<String,	Object> session = ActionContext.getContext().getSession();
@@ -76,11 +76,16 @@ public class CheckoutAction extends ActionSupport implements SessionAware{
 
 
 
-	public int getCreditcardnum() {
+
+
+
+	public long getCreditcardnum() {
 		return creditcardnum;
 	}
 
-
+	public void setCreditcardnum(long creditcardnum) {
+		this.creditcardnum = creditcardnum;
+	}
 
 	public void setCreditcardnum(int creditcardnum) {
 		this.creditcardnum = creditcardnum;
