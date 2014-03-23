@@ -7,8 +7,17 @@ import java.sql.SQLException;
 import model.Feedback;
 
 public class FeedbackDAO {
+	DBConnection dbConnection;
+	Connection conn;
+
+
+	public FeedbackDAO() {
+		dbConnection = DBConnection.getConn();
+		conn = dbConnection.getConnection();
+	}
+	
 	public boolean newFeedback(Feedback f){
-		Connection conn = DBConnection.getConn();
+		
 		String query = "insert into tblfeedback (id,name,email,subject,message) values (?,?,?,?,?)";
 		try {
 			PreparedStatement pr = conn.prepareStatement(query);

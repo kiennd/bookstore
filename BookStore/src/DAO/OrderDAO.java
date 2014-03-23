@@ -14,13 +14,22 @@ import java.util.Vector;
 
 
 
+
+
+
 import model.Order;
 
 
 public class OrderDAO {
-
+	DBConnection dbConnection;
+	Connection conn;
+	public OrderDAO() {
+		dbConnection = DBConnection.getConn();
+		conn = dbConnection.getConnection();
+	}
+	
 	public boolean editOrder(Order order) {
-		Connection conn = DBConnection.getConn();
+		 
 		String updatesql = "update tblorder set userID = ?,"
 				+ " bookID = ?,"
 				+ " paymentMethodID = ?,"
@@ -52,7 +61,7 @@ public class OrderDAO {
 	}
 	
 	public boolean saveNewOrder(Order order) {
-		Connection conn = DBConnection.getConn();
+		 
 		String sql = "insert into tblorder(id,userID,bookID,paymentMethodID,"
 				+ "orderDate,discount,price,quantity,cardnumber,cardverificationnumber,nameoncard) "
 				+ "values(?,?,?,?,?,?,?,?,?,?,?)";
@@ -82,7 +91,7 @@ public class OrderDAO {
 		
 	}
 	public Order getOrder(int id) {
-		Connection conn = DBConnection.getConn();
+		 
 		String sql = "select * from tblorder where id=?";
 		PreparedStatement pstm;
 		try {
@@ -113,7 +122,7 @@ public class OrderDAO {
 	
 	public Vector<Order> searchOrder(String searchKey) {
 		Vector<Order> orderList = new Vector<>();
-		Connection conn = DBConnection.getConn();
+		 
 		String sql = "select o.*, u.*, b.*, p.* " +
 					 		"from tblOrder o " +
 					 		"Inner Join tblUser as u on o.userID = u.id " +

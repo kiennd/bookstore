@@ -10,10 +10,14 @@ import model.Role;
 import model.User;
 
 public class UserDAO {
+	DBConnection dbConnection;
 	Connection conn;
-
+	public UserDAO() {
+		dbConnection = DBConnection.getConn();
+		conn = dbConnection.getConnection();
+	}
 	public boolean checkLogin(User user) {
-		conn = DBConnection.getConn();
+		
 
 		String query = "select * from tbluser where username = ? and password = ? and roleid = 1";
 		PreparedStatement pr;
@@ -35,7 +39,7 @@ public class UserDAO {
 	}
 	
 	public int checkUserLogin(User user) {
-		conn = DBConnection.getConn();
+		
 		int id = -1;
 		String query = "select * from tbluser where username = ? and password = ? and roleid = 2";
 		PreparedStatement pr;
@@ -57,7 +61,7 @@ public class UserDAO {
 		return -1;
 	}
 	public Vector<User> findUser(String name) {
-		conn = DBConnection.getConn();
+		
 		StringBuffer query = new StringBuffer("select * from tblUser as u "
 				+ "Inner join tblrole as r on u.roleid = r.id "
 				+ "order by u.id");
@@ -100,7 +104,7 @@ public class UserDAO {
 	}
 
 	public User getUser(int id) {
-		conn = DBConnection.getConn();
+		
 		String query = "select * from tbluser as u "
 				+ "Inner join tblrole as r on u.roleid = r.id where u.id=" + id
 				+ " order by u.id";
@@ -134,7 +138,7 @@ public class UserDAO {
 	}
 
 	public boolean saveUser(User user) {
-		conn = DBConnection.getConn();
+		
 		String query = "update tbluser set username = ?, roleid = ?, fullname= ?, phonenumber = ? "
 				+ "where id = ?";
 		try {
@@ -156,7 +160,7 @@ public class UserDAO {
 	}
 	
 	public boolean saveUserFront(User user) {
-		conn = DBConnection.getConn();
+		
 		String query = "update tbluser set username = ?, fullname= ?, phoneNumber = ? "
 				+ "where id = ?";
 		try {
@@ -177,7 +181,7 @@ public class UserDAO {
 	}
 	
 	public boolean deleteUser(int id){
-		conn = DBConnection.getConn();
+		
 		String query = "delete from tbluser where id = "+id;
 		try {
 			PreparedStatement pr = conn.prepareStatement(query);
@@ -191,7 +195,7 @@ public class UserDAO {
 	}
 	
 	public boolean newUser(User user){
-		conn = DBConnection.getConn();
+		
 		String query = "insert into tbluser (id,username,password,roleid,fullname,phonenumber) values (?,?,?,?,?,?)";
 		try {
 			PreparedStatement pr = conn.prepareStatement(query);
@@ -213,7 +217,7 @@ public class UserDAO {
 	}
 	
 	public boolean checkUserExist(String username) {
-		conn = DBConnection.getConn();
+		
 		String query = "select * from tbluser where username = ? and roleid = 2";
 		PreparedStatement pr;
 		try {

@@ -9,11 +9,16 @@ import java.util.Vector;
 import model.Category;
 
 public class CategoryDAO {
+	DBConnection dbConnection;
 	Connection conn;
 
+	public CategoryDAO() {
+		dbConnection = DBConnection.getConn();
+		conn = dbConnection.getConnection();
+	}
 
 	public Vector<Category> find(String name) {
-		conn = DBConnection.getConn();
+		
 		StringBuffer query = new StringBuffer("select * from tblCategory ");
 
 		if (name.length() > 0) {
@@ -41,7 +46,6 @@ public class CategoryDAO {
 	}
 
 	public Category getCategory(int id) {
-		conn = DBConnection.getConn();
 		String query = "select * from tblcategory where id = " + id;
 		java.sql.Statement st;
 		ResultSet rs = null;
@@ -63,7 +67,7 @@ public class CategoryDAO {
 	}
 
 	public boolean saveCategory(Category category) {
-		conn = DBConnection.getConn();
+		 
 		String query = "update tblcategory set name = ?"
 				+ "where id = ?";
 		try {
@@ -82,7 +86,7 @@ public class CategoryDAO {
 	}
 	
 	public boolean deleteCategory(int id){
-		conn = DBConnection.getConn();
+		 
 		String query = "delete from tblcategory where id = "+id;
 		try {
 			PreparedStatement pr = conn.prepareStatement(query);
@@ -97,7 +101,7 @@ public class CategoryDAO {
 	}
 	
 	public boolean newCategory(Category category){
-		conn = DBConnection.getConn();
+		 
 		String query = "insert into tblcategory (id,name) values (?,?)";
 		try {
 			PreparedStatement pr = conn.prepareStatement(query);
