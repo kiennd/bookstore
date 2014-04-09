@@ -30,6 +30,7 @@
 		<action name="login" class="control.frontend.LoginAction" method="execute">
 			<result name="success">index.jsp</result>
 			<result name="input">login.jsp</result>
+			
 		</action>
 		<action name="logout" class="control.frontend.LogoutAction" method="execute">
 			<result name="success">index.jsp</result>

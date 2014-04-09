@@ -4,6 +4,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <header id="main-header">
+<script>
+function formSubmit()
+{
+document.getElementById("frm1").submit();
+}
+</script>
 	<section class="container-fluid container">
 		<section class="row-fluid">
 			<section class="span4">
@@ -13,14 +19,17 @@
 			</section>
 			<section class="span8">
 				<ul class="top-nav2">
-					<li><a href="checkout.html">My Account</a></li>
-					<li><a href="cart.html">My Cart</a></li>
+					<li><a href="<%=request.getContextPath()%>/profile.jsp">My Account</a></li>
+					<li><a href="<%=request.getContextPath()%>/cart.jsp">My Cart</a></li>
 					<li><a href="checkout.html">Checkout</a></li>
 					<li><a href="order-recieved.html">Track Your Order</a></li>
+					<li><a href="#">Message</a> <font color="red"><%=0%></font>
 				</ul>
 				<div class="search-bar">
-					<input name="" type="text" value="search entire store here..." />
-					<input name="" type="button" value="Serach" />
+				<form action = "filter">		
+					<input name="title" type="text" value="search entire store here..." />
+					<input type="button" onclick="formSubmit()" value="Search" />
+				</form>
 				</div>
 			</section>
 		</section>

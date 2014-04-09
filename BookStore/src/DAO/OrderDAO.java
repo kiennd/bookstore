@@ -7,7 +7,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.Vector;
+
 
 
 
@@ -52,23 +54,24 @@ public class OrderDAO {
 	public boolean saveNewOrder(Order order) {
 		Connection conn = DBConnection.getConn();
 		String sql = "insert into tblorder(id,userID,bookID,paymentMethodID,"
-				+ "orderDate,discount,price,quantity,cardnumber,cardverificationnumber,nameoncard,expirationdate) "
-				+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "orderDate,discount,price,quantity,cardnumber,cardverificationnumber,nameoncard) "
+				+ "values(?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement pstm;
 		try {
+			Calendar cal = Calendar.getInstance();
 			pstm = conn.prepareStatement(sql);
 			pstm.setInt(1, order.getId());
 			pstm.setInt(2, order.getUser().getId());
 			pstm.setInt(3, order.getBook().getId());
-			pstm.setInt(4, order.getPaymentMethod().getId());
-			pstm.setDate(5, order.getOrderDate());
+			pstm.setInt(4, 1);
+			pstm.setDate(5, new Date(cal.getTime().getTime()));
 			pstm.setFloat(6, order.getDiscount());
 			pstm.setInt(7, order.getPrice());
 			pstm.setInt(8, order.getQuantity());
-			pstm.setInt(9, order.getCardnumber());
-			pstm.setInt(10, order.getCardverificationnumber());
-			pstm.setString(11, order.getNameoncard());
-			pstm.setDate(12,order.getExpirationdate());
+			pstm.setLong(9, order.getCardnumber());
+			pstm.setLong(10, order.getCardverificationnumber());
+			pstm.setString(11, order.getNameoncard()==null?"":order.getNameoncard());
+
 			
 			return !pstm.execute();
 		} catch (SQLException e) {

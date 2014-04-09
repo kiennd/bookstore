@@ -10,6 +10,7 @@ import model.Author;
 import model.Book;
 import model.Category;
 import model.Publisher;
+import model.RecommendBooks;
 import model.Store;
 
 import org.apache.commons.io.FileUtils;
@@ -23,7 +24,10 @@ import DAO.StoreDAO;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class BookAction extends ActionSupport implements ServletRequestAware {
+import control.observer.Observer;
+import control.observer.Subject;
+
+public class BookAction extends ActionSupport implements ServletRequestAware, Subject{
 
 	/**
 	 * 
@@ -33,6 +37,7 @@ public class BookAction extends ActionSupport implements ServletRequestAware {
 	private Vector<Author> authors;
 	private Vector<Publisher> publishers;
 	private Vector<Category> categories;
+	public static Vector<Observer> listObserver = new Vector<>();
 
 	private String name = "";
 	private int id;
@@ -78,23 +83,32 @@ public class BookAction extends ActionSupport implements ServletRequestAware {
 	public String saveBook() {
 		BookDAO bd = new BookDAO();
 		if (bd.saveBook(bookBean)) {
+			if(tmpBook==null||bookBean.getPrice()!=tmpBook.getPrice()) {
+				RecommendBooks.shareInstance().addABook(bookBean);
+				this.notifyObservers("");
+			}
 			return SUCCESS;
 		}
-		return ERROR;
+		return null;
 	}
 
 	public String deleteBook() throws Exception {
 		BookDAO bd = new BookDAO();
-		if (bd.deleteBook(id))
+		Book b = bd.getBookbyId(id);
+		if (bd.deleteBook(id)){
+			this.notifyObservers("Book '"+b.getTitle()+"' is not available in store");
 			return SUCCESS;
-		else
+		}else
 			return ERROR;
 	}
 
+	Book tmpBook;
 	public String edit() throws Exception {
 		BookDAO bd = new BookDAO();
 		getComboboxContent();
 		this.bookBean = bd.getBookbyId(id);
+		// so sanh gia
+		tmpBook = this.bookBean;
 		return SUCCESS;
 	}
 	
@@ -135,6 +149,7 @@ public class BookAction extends ActionSupport implements ServletRequestAware {
 				return ERROR;
 			}
 			if (bd.newBook(bookBean)) {
+				this.notifyObservers("We are offering new book: '"+bookBean.getTitle()+"'");
 				return SUCCESS;
 			} else {
 				addActionError("Item create false!");
@@ -270,5 +285,24 @@ public class BookAction extends ActionSupport implements ServletRequestAware {
 	@Override
 	public void setServletRequest(HttpServletRequest arg0) {
 		this.request = arg0;
+	}
+
+	public static void registerObserver(Observer observer) {
+		// TODO Auto-generated method stub
+		listObserver.add(observer);
+	}
+
+	public static void removeObserver(Observer observer) {
+		// TODO Auto-generated method stub
+		listObserver.remove(observer);
+	}
+
+	@Override
+	public void notifyObservers(String s) {
+		// TODO Auto-generated method stub
+		System.out.println("Notify to clients");
+		for(Observer o : listObserver) {
+			o.update(s);
+		}
 	}
 }

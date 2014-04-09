@@ -17,10 +17,14 @@ public class LoginAction extends ActionSupport implements SessionAware{
 
 	public String execute() throws Exception {
 		UserDAO ud = new UserDAO();
+		
 		if(userBean == null){
 			return "input";
 		}
+		System.out.println(userBean.getUsername());
+		System.out.println(userBean.getPassword());
 		if (ud.checkLogin(userBean)) {
+			System.out.println("Login successfully");
 			session.put("user", userBean);
 			return "success";
 		} else {
@@ -30,7 +34,7 @@ public class LoginAction extends ActionSupport implements SessionAware{
 	}
 	
 	public void validate() {
-		System.out.println(userBean.getUsername());
+		
 		if (userBean.getUsername().length() == 0) {
 			addActionError("Username is required.");
 		}

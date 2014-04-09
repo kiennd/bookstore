@@ -15,7 +15,7 @@ public class UserDAO {
 	public boolean checkLogin(User user) {
 		conn = DBConnection.getConn();
 
-		String query = "select * from tbluser where username = ? and password = ? and roleid = 1";
+		String query = "select * from tbluser where username = ? and password = ? and roleId = 1";
 		PreparedStatement pr;
 		try {
 
@@ -25,6 +25,7 @@ public class UserDAO {
 
 			ResultSet rs = pr.executeQuery();
 			if (rs.next()) {
+				System.out.println("Login successfully");
 				return true;
 			}
 		} catch (SQLException e) {

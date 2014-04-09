@@ -29,7 +29,7 @@
 		            <div class="heading-bar">
 		            	<h2>SHOPPING CART</h2>
 		                <span class="h-line"></span>
-		            	<a href="checkout.jsp" class="more-btn">proceed to checkout</a>
+		            	<a href="checkout" class="more-btn">proceed to checkout</a>
 		            </div>
 		            <div class="cart-table-holder">
 		            	<%
