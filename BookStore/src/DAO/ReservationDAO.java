@@ -13,9 +13,16 @@ import model.Reservation;
 import model.User;
 
 public class ReservationDAO {
-
+	DBConnection dbConnection;
+	Connection conn;
+	
+	public ReservationDAO() {
+		dbConnection = DBConnection.getConn();
+		conn = dbConnection.getConnection();	
+	}
+	
 	public boolean editReservation(Reservation reservation) {
-		Connection conn = DBConnection.getConn();
+		
 		String updatesql = "update tblreservation set userID = ?,"
 				+ " bookID = ?,"
 				+ " initDate = ?"
@@ -39,7 +46,7 @@ public class ReservationDAO {
 	}
 	
 	public Reservation getReservation(int id) {
-		Connection conn = DBConnection.getConn();
+		
 		String sql = "select * from tblreservation where id=?";
 		PreparedStatement pstm;
 		try {
@@ -65,7 +72,7 @@ public class ReservationDAO {
 	
 	public Vector<Reservation> searchReservation(String searchKey) {
 		Vector<Reservation> reservationList = new Vector<>();
-		Connection conn = DBConnection.getConn();
+		
 		String sql = "select r.*, u.*,b.* " +
 					 		"from tblReservation r " +
 					 		"Inner Join tblUser as u on r.userID = u.id " +
@@ -98,7 +105,7 @@ public class ReservationDAO {
 	}
 	
 	public Vector<Reservation> getReservationByUser(User user) {
-		Connection conn = DBConnection.getConn();
+		
 		String sql = "select * from tblreservation where userID = " + user.getId();
 		Statement st;
 		Vector<Reservation> rslist = new Vector<>();

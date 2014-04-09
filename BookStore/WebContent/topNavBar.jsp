@@ -2,8 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.Vector"%>
 <%@page import="model.*"%>
+<<<<<<< HEAD
 <%@page import="control.backend.BookAction"%>
 <%@page import="control.frontend.LoginAction"%>
+=======
+>>>>>>> 7d060cb28a40255583b9f01ad06ada2a8675ae7a
 <%
 	User user = null;
 	user = (User) session.getAttribute("user");

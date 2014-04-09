@@ -14,9 +14,12 @@ import model.Category;
 import model.Publisher;
 
 public class BookDAO {
+	DBConnection dbConnection;
 	Connection conn;
-
+	
 	public BookDAO() {
+		dbConnection = DBConnection.getConn();
+		conn = dbConnection.getConnection();
 	}
 
 	public Book getBookbyId(int id) {
@@ -27,7 +30,6 @@ public class BookDAO {
 				+ " Where b.id= "+id
 				+ " order by b.dateupdate";
 		Book b = new Book();
-		conn = DBConnection.getConn();
 		try {
 			java.sql.PreparedStatement pre = conn.prepareStatement(sql);
 			ResultSet rs = pre.executeQuery();
@@ -78,7 +80,6 @@ public class BookDAO {
 			sql = sql + " b.description like '%" + name + "%'";
 		}
 		try {
-			conn = DBConnection.getConn();
 			java.sql.PreparedStatement pre = conn.prepareStatement(sql);
 			ResultSet rs = pre.executeQuery();
 			vec = resultsetToBooks(rs);
@@ -97,7 +98,6 @@ public class BookDAO {
 	}
 
 	public boolean newBook(Book book) {
-		conn = DBConnection.getConn();
 		String sql = "insert into tblbook(id,publisherid,authorid,description,title,categoryid,price,imageurl,dateupdate) values (?,?,?,?,?,?,?,?,?)";
 		System.out.println(sql);
 		try {
@@ -122,7 +122,6 @@ public class BookDAO {
 	}
 
 	public boolean deleteBook(int id) {
-		conn = DBConnection.getConn();
 		try {
 			Statement st = conn.createStatement();
 			String sql = "delete from tblstore where bookid = " + id;
@@ -147,7 +146,6 @@ public class BookDAO {
 	public boolean saveBook(Book book) {
 		String sql = "update tblbook set publisherID = ?, authorID = ?, description = ?, title = ?, categoryID = ?, price = ? where id = ?";
 		try {
-			conn = DBConnection.getConn();
 			java.sql.PreparedStatement pre = conn.prepareStatement(sql);
 			pre.setInt(1, book.getPublisher().getId());
 			pre.setInt(2, book.getAuthor().getId());
@@ -172,7 +170,56 @@ public class BookDAO {
 					+ "Inner join tblpublisher as p on p.id = b.publisherid "
 					+ "Inner join tblauthor as a on a.id = b.authorid "
 					+ " order by b.dateupdate";
-			conn = DBConnection.getConn();
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			int count = 0;
+
+			while (rs.next() && count < numBook) {
+				count++;
+				Book b = new Book();
+				Category c = new Category();
+				c.setId(rs.getInt("b.categoryid"));
+				c.setName(rs.getString("c.name"));
+
+				Publisher p = new Publisher();
+				p.setId(rs.getInt("b.publisherid"));
+				p.setAddress(rs.getString("p.address"));
+				p.setDescription(rs.getString("p.description"));
+				p.setName(rs.getString("p.name"));
+
+				Author a = new Author();
+				a.setId(rs.getInt("a.id"));
+				a.setName(rs.getString("a.name"));
+				a.setDescription(rs.getString("a.description"));
+				a.setDateOfBirth(rs.getDate("a.dateOfBirth"));
+
+				b.setAuthor(a);
+				b.setCategory(c);
+				b.setPublisher(p);
+				b.setDescription(rs.getString("b.description"));
+				b.setId(rs.getInt("b.id"));
+				b.setImageurl(rs.getString("b.imageurl"));
+				b.setPrice(rs.getLong("b.price"));
+				b.setTitle(rs.getString("b.title"));
+				result.add(b);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+	
+	public Vector<Book> getBestSellingBook(int numBook){
+		Vector<Book> result = new Vector<>();
+		try {
+			String sql = "select b.*,c.*,p.*,a.* " + "From tblbook as b "
+					+ "Inner join tblcategory as c on c.id = b.categoryid "
+					+ "Inner join tblpublisher as p on p.id = b.publisherid "
+					+ "Inner join tblauthor as a on a.id = b.authorid "
+					+ " order by b.id";
 			Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			int count = 0;
@@ -273,7 +320,10 @@ public class BookDAO {
 			String sql = "select  sum(quantity) as sum,bookid from tblOrder "
 					+ "Group by bookid " + "order by sum desc " + "limit "
 					+ 10;
+<<<<<<< HEAD
 			conn = DBConnection.getConn();
+=======
+>>>>>>> 7d060cb28a40255583b9f01ad06ada2a8675ae7a
 			Statement st = conn.createStatement();
 			ResultSet rs2 = st.executeQuery(sql);
 
@@ -307,7 +357,6 @@ public class BookDAO {
 				+ "Inner join tblpublisher as p on p.id = b.publisherid "
 				+ "Inner join tblauthor as a on a.id = b.authorid "
 				+ "where b.categoryid =" + categoryid;
-		conn = DBConnection.getConn();
 		Statement st;
 		try {
 			st = conn.createStatement();
@@ -356,7 +405,6 @@ public class BookDAO {
 				+ "Inner join tblpublisher as p on p.id = b.publisherid "
 				+ "Inner join tblauthor as a on a.id = b.authorid "
 				+ "where b.authorid =" + auid;
-		conn = DBConnection.getConn();
 		Statement st;
 		try {
 			st = conn.createStatement();
@@ -443,7 +491,6 @@ public class BookDAO {
 			sql = sql + " b.price < " + priceMax + " and b.price > "+priceMin;	
 		}
 		try {
-			conn = DBConnection.getConn();
 			java.sql.PreparedStatement pre = conn.prepareStatement(sql);
 			ResultSet rs = pre.executeQuery();
 			books = resultsetToBooks(rs);

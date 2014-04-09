@@ -34,6 +34,7 @@
 						<div class="bb-custom-content">
 							<div class="slide-inner">
 								<div class="span4 book-holder">
+<<<<<<< HEAD
 									<a href="<%=request.getContextPath()%>/detailBook?id=${id}">
 										<img src="images/books/${imageurl}" />
 									</a>
@@ -41,6 +42,13 @@
 										<a class="cart-btn2"
 											href="<%=request.getContextPath()%>/addtocart.jsp?id=${id}">Add
 											to Cart</a> <span class="price"> Gia : ${price} </span>
+=======
+									<a href="<%=request.getContextPath()%>/detailBook?id=${id}"> <img
+										src="images/books/${imageurl}" /></a>
+									<div class="cart-price">
+										<a class="cart-btn2" href="<%=request.getContextPath()%>/addtocart.jsp?id=${id}">Add to Cart</a> <span
+											class="price"> Gia : ${price} </span>
+>>>>>>> 7d060cb28a40255583b9f01ad06ada2a8675ae7a
 									</div>
 								</div>
 								<div class="span8 book-detail">
@@ -50,15 +58,23 @@
 									<strong class="title"><s:property value="author.name" /></strong>
 									<span class="rating-bar"> <img
 										src="images/raing-star2.png" alt="Rating Star" />
+<<<<<<< HEAD
 									</span> <a href="<%=request.getContextPath()%>/addtocart.jsp?id=${id}"
 										class="shop-btn">SHOP NOW</a>
+=======
+									</span> <a href="<%=request.getContextPath()%>/addtocart.jsp?id=${id}" class="shop-btn">SHOP NOW</a>
+>>>>>>> 7d060cb28a40255583b9f01ad06ada2a8675ae7a
 									<div class="cap-holder">
 										<p>
 											<img src="images/image27.png" alt="Best Choice" align="right" />
 											<c:out value="${fn:substring(description, 0, 200)}... " />
 										</p>
+<<<<<<< HEAD
 										<a href="<%=request.getContextPath()%>/detailBook?id=${id}">Read
 											More</a>
+=======
+										<a href="<%=request.getContextPath()%>/detailBook?id=${id}">Read More</a>
+>>>>>>> 7d060cb28a40255583b9f01ad06ada2a8675ae7a
 									</div>
 								</div>
 							</div>
@@ -76,6 +92,7 @@
 		<h2>WELCOME TO Hackintosh BookStore.</h2>
 		<p>Offering a wide selection of books on thousands of topics at
 			low prices to satisfy any book-lover!</p>
+<<<<<<< HEAD
 		</section> </section> <section class="row-fluid features-books"> <section
 			class="span12 m-bottom">
 		<div class="heading-bar">
@@ -119,6 +136,56 @@
 							href="<%=request.getContextPath()%>/addtocart.jsp?id=${id}">Add
 							to Cart</a> <span class="price">Gia: ${price} </span>
 					</div>
+=======
+		</section> </section> 
+		
+		
+		
+		<section class="row-fluid features-books"> 
+			<section class="span12 m-bottom">
+				<div class="heading-bar">
+					<h2>Sách bán chạy</h2>
+					<span class="h-line"></span>
+				</div>
+				<div class="slider1">
+					<s:iterator value="bestSellingBooks">
+						<div class="slide">
+							<a href="<%=request.getContextPath()%>/detailBook?id=${id}"><img src="images/books/${imageurl}" alt=""
+								class="pro-img" /></a> <span class="title" style="height: 50px;"><a
+								href="<%=request.getContextPath()%>/detailBook?id=${id}"><s:property value="title" /></a></span> <span
+								class="rating-bar"><img src="images/rating-star.png"
+								alt="Rating Star" /></span>
+							<div class="cart-price">
+								<a class="cart-btn2" href="<%=request.getContextPath()%>/addtocart.jsp?id=${id}">Add to Cart</a> <span
+									class="price">Gia: ${price} </span>
+							</div>
+						</div>
+					</s:iterator>
+				</div>
+			</section>
+		 </section>
+		 
+		 <section class="row-fluid features-books"> 
+			<section class="span12 m-bottom">
+				<div class="heading-bar">
+					<h2>Sách Mới</h2>
+					<span class="h-line"></span>
+				</div>
+				<div class="slider1"  style="height: 700px;">
+					<s:iterator value="newBooks" >
+						<div class="slide">
+							<a href="<%=request.getContextPath()%>/detailBook?id=${id}"><img src="images/books/${imageurl}" alt=""
+								class="pro-img" height="300" width="200" /></a> <span class="title" style="height: 50px;"><a
+								href="<%=request.getContextPath()%>/detailBook?id=${id}"><s:property value="title" /></a></span> <span
+								class="rating-bar"><img src="images/rating-star.png"
+								alt="Rating Star" /></span>
+							<div class="cart-price">
+								<a class="cart-btn2" href="<%=request.getContextPath()%>/addtocart.jsp?id=${id}">Add to Cart</a> <span
+									class="price">Gia: ${price} </span>
+							</div>
+						</div>
+					</s:iterator>
+>>>>>>> 7d060cb28a40255583b9f01ad06ada2a8675ae7a
 				</div>
 			</s:iterator>
 		</div>
@@ -152,9 +219,14 @@
 							<div class="slider8">
 								<s:iterator value="authorBooks">
 									<div class="slide">
+<<<<<<< HEAD
 										<li><a
 											href="<%=request.getContextPath()%>/detailBook?id=${id}"><img
 												src="images/books/${imageurl}" alt="" height="83" width="59" /></a></li>
+=======
+										<li><a href="<%=request.getContextPath()%>/detailBook?id=${id}"><img
+											src="images/books/${imageurl}" alt="" height="83" width="59" /></a></li>
+>>>>>>> 7d060cb28a40255583b9f01ad06ada2a8675ae7a
 									</div>
 								</s:iterator>
 							</div>
@@ -166,6 +238,7 @@
 			<div class="right">
 				<s:iterator value="authorBooks" begin="0" end="0">
 					<div class="current-book">
+<<<<<<< HEAD
 						<strong class="title"><a
 							href="<%=request.getContextPath()%>/detailBook?id=${id}">${name}</a></strong>
 						<p>${fn:substring(description, 0, 120)}...</p>
@@ -178,6 +251,18 @@
 					<div class="c-b-img">
 						<a href="<%=request.getContextPath()%>/detailBook?id=${id}"><img
 							src="images/books/${imageurl}" alt="" /></a>
+=======
+						<strong class="title"><a href="<%=request.getContextPath()%>/detailBook?id=${id}">${name}</a></strong>
+						<p>${fn:substring(description, 0, 120)}...</p>
+						<div class="cart-price">
+							<a href="<%=request.getContextPath()%>/addtocart.jsp?id=${id}" class="cart-btn2">Add to Cart</a> <span
+								class="price">Gía: ${price}</span>
+						</div>
+					</div>
+					<div class="c-b-img">
+						<a href="<%=request.getContextPath()%>/detailBook?id=${id}"><img src="images/books/${imageurl}"
+							alt="" /></a>
+>>>>>>> 7d060cb28a40255583b9f01ad06ada2a8675ae7a
 					</div>
 				</s:iterator>
 			</div>
@@ -230,9 +315,21 @@
 				</div>
 			</div>
 		</div>
+<<<<<<< HEAD
 		</section> --%> </section> <!-- End Featured Author --> <section
 			class="row-fluid m-bottom"> <!-- Start Blog Section --> <!-- End Testimonials Section -->
 		</section> </section>
+=======
+		</section> --%> </section> <!-- End Featured Author --> <section class="row-fluid m-bottom">
+		<!-- Start Blog Section --> 
+		
+		
+		
+		
+		
+		
+	<!-- End Testimonials Section --> </section> </section>
+>>>>>>> 7d060cb28a40255583b9f01ad06ada2a8675ae7a
 		<!-- End Main Content Holder -->
 		<!-- Start Footer Top 1 -->
 		<%@include file="footer.jsp"%>

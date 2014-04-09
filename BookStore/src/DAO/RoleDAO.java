@@ -9,11 +9,16 @@ import java.util.Vector;
 import model.Role;
 
 public class RoleDAO {
+	DBConnection dbConnection;
 	Connection conn;
 
+	public RoleDAO() {
+		dbConnection = DBConnection.getConn();
+		conn = dbConnection.getConnection();
+	}
 
 	public Vector<Role> findRole(String name) {
-		conn = DBConnection.getConn();
+		
 		StringBuffer query = new StringBuffer("select * from tblrole ");
 
 		if (name.length() > 0) {
@@ -44,10 +49,11 @@ public class RoleDAO {
 		return null;
 
 	}
+
 	public Role getRole(int id) {
 		String sql = "select * from tblrole where id = ?";
 		Role r = new Role();
-		conn = DBConnection.getConn();
+		
 		try {
 			java.sql.PreparedStatement pre = conn.prepareStatement(sql);
 			pre.setInt(1, id);
@@ -67,7 +73,7 @@ public class RoleDAO {
 	}
 
 	public boolean newRole(Role role) {
-		conn = DBConnection.getConn();
+		
 		String sql = "insert into tblrole values (?,?,?)";
 		System.out.println(sql);
 		try {
@@ -88,7 +94,7 @@ public class RoleDAO {
 	}
 
 	public boolean saveRole(Role role) {
-		conn = DBConnection.getConn();
+		
 		String query = "update tblrole set role = ?, description = ?"
 				+ "where id = ?";
 		try {
@@ -108,7 +114,7 @@ public class RoleDAO {
 	}
 
 	public boolean deleteRole(int id) {
-		conn = DBConnection.getConn();
+		
 
 		try {
 			String query = "delete from tblUser where roleid = " + id;
@@ -117,7 +123,7 @@ public class RoleDAO {
 			if (pr.execute()) {
 				return false;
 			}
-			
+
 			query = "delete from tblrole where id = " + id;
 			pr = conn.prepareStatement(query);
 			if (!pr.execute()) {

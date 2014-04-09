@@ -11,10 +11,15 @@ import java.util.Vector;
 import model.Publisher;
 
 public class PublisherDAO {
+	DBConnection dbConnection;
 	Connection conn;
-
+	
+	public PublisherDAO() {
+		dbConnection = DBConnection.getConn();
+		conn = dbConnection.getConnection();	
+	}
 	public boolean addPublisher(Publisher publisher) {
-		conn = DBConnection.getConn();
+		
 
 		String query = "insert into tblpublisher values (?,?,?,?)";
 		PreparedStatement pr;
@@ -38,7 +43,7 @@ public class PublisherDAO {
 	}
 	
 	public ArrayList<Publisher> returnNumberOfResult() {
-		conn = DBConnection.getConn();
+		
 		ArrayList<Publisher> list = new ArrayList<>();
 		String query = "select * from tblpublisher";
 		PreparedStatement pr;
@@ -60,7 +65,7 @@ public class PublisherDAO {
 	
 	
 	public boolean updatePublisher(int id, Publisher publisher) {
-		conn = DBConnection.getConn();
+		
 		String query = "update tblpublisher set name = ?, address = ?, description = ? "
 				+ "where id = ?";
 		try {
@@ -82,7 +87,7 @@ public class PublisherDAO {
 	}
 	
 	public boolean deletePublisher(int id){
-		conn = DBConnection.getConn();
+		
 		String query = "delete from tblpublisher where id = "+id;
 		try {
 			PreparedStatement pr = conn.prepareStatement(query);
@@ -101,7 +106,7 @@ public class PublisherDAO {
 	 * 
 	 */
 	public Vector<Publisher> find(String name){
-		conn = DBConnection.getConn();
+		
 		Vector<Publisher> publisers = new Vector<>();
 		try {
 			StringBuffer query = new StringBuffer("select * from tblpublisher");

@@ -12,10 +12,14 @@ import java.util.Vector;
 import model.Author;
 
 public class AuthorDAO {
+	DBConnection dbConnection;
 	Connection conn;
-
+	public AuthorDAO() {
+		dbConnection = DBConnection.getConn();
+		conn = dbConnection.getConnection();
+	}
+	
 	public boolean addAuthor(Author author) {
-		conn = DBConnection.getConn();
 
 		String query = "insert into tblauthor values (?,?,?,?,?)";
 		PreparedStatement pr;
@@ -39,7 +43,6 @@ public class AuthorDAO {
 	}
 
 	public ArrayList<Author> returnNumberOfResult() {
-		conn = DBConnection.getConn();
 		ArrayList<Author> list = new ArrayList<>();
 		String query = "select * from tblauthor";
 		PreparedStatement pr;
@@ -62,7 +65,6 @@ public class AuthorDAO {
 	}
 
 	public boolean updateAuthor(int id, Author author) {
-		conn = DBConnection.getConn();
 		String query = "update tblauthor set name = ?, dateOfBirth = ?, description = ? , imageurl = ?"
 				+ "where id = ?";
 		try {
@@ -85,7 +87,6 @@ public class AuthorDAO {
 	}
 
 	public boolean deleteAuthor(int id) {
-		conn = DBConnection.getConn();
 		String query = "delete from tblauthor where id = " + id;
 		try {
 			PreparedStatement pr = conn.prepareStatement(query);
@@ -107,7 +108,6 @@ public class AuthorDAO {
 	public Author getAuthorHightLight() {
 		Author author = new Author();
 
-		conn = DBConnection.getConn();
 		String sql = "select a.*,o.*,b.*,sum(o.quantity) as su "
 				+ " from tblauthor as a"
 				+ " inner join tblbook as b on b.authorid = a.id"
@@ -129,7 +129,6 @@ public class AuthorDAO {
 	}
 
 	public Vector<Author> find(String name) {
-		conn = DBConnection.getConn();
 		Vector<Author> authors = new Vector<>();
 
 		try {
