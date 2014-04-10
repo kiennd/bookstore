@@ -270,7 +270,7 @@ public class BookDAO {
 					+ "Inner join tblpublisher as p on p.id = b.publisherid "
 					+ "Inner join tblauthor as a on a.id = b.authorid "
 					+ " order by b.id";
-			conn = (Connection) DBConnection.getConn();
+			conn = DBConnection.getConn().getConnection();
 			Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			int count = 0;

@@ -31,16 +31,18 @@ public class DBConnection {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/bookstore?characterEncoding=UTF-8", "root", "");
+					"jdbc:mysql://localhost:3306/bookstore?characterEncoding=UTF-8", "root", "hahaha");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public static DBConnection getConn(){
-		synchronized(getConn()){
-			
-		}
+//		synchronized(getConn()){
+//			if(dbConnection == null){
+//				dbConnection = new DBConnection();
+//			}
+//		}
 		if(dbConnection == null){
 			dbConnection = new DBConnection();
 		}
