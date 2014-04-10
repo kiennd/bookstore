@@ -11,15 +11,6 @@ import java.util.Calendar;
 import java.util.Vector;
 
 
-
-
-
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 7d060cb28a40255583b9f01ad06ada2a8675ae7a
 import model.Order;
 
 

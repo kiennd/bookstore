@@ -47,11 +47,8 @@ public class CheckoutAction extends ActionSupport implements SessionAware{
 			order.setPaymentMethod(pm);
 			order.setQuantity(c.getQuantity());
 			order.setUser(user);
-<<<<<<< HEAD
 			order.setPrice((int)session.get("totalPrice"));
-=======
 			order.setPrice((Integer)session.get("totalPrice"));
->>>>>>> 7d060cb28a40255583b9f01ad06ada2a8675ae7a
 			OrderDAO orderDao = new OrderDAO();
 			orderDao.saveNewOrder(order);
 		}
