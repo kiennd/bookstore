@@ -16,6 +16,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import control.backend.BookAction;
 import control.observer.Observer;
+import control.observer.Subject;
 
 public class LoginAction extends ActionSupport implements SessionAware,
 		Observer {
