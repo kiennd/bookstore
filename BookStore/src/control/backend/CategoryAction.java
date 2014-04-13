@@ -85,14 +85,14 @@ public class CategoryAction extends ActionSupport {
 		CategoryDAO cd = new CategoryDAO();
 
 		if (id != 0) {
-			if (cd.deleteCategory(id)) {
+			if (cd.delete(id)) {
 				addActionMessage("Item #" + id + " was deleted !");
 				return SUCCESS;
 			} else
 				return ERROR;
 		} else {
 			for (String s : selection) {
-				if (cd.deleteCategory(Integer.parseInt(s)))
+				if (cd.delete(Integer.parseInt(s)))
 					addActionMessage("Item #" + s + " was deleted !");
 				else
 					return ERROR;

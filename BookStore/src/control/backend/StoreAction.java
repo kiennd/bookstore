@@ -84,14 +84,14 @@ public class StoreAction extends ActionSupport {
 		StoreDAO cd = new StoreDAO();
 
 		if (id != 0) {
-			if (cd.deleteStore(id)) {
+			if (cd.delete(id)) {
 				addActionMessage("Item #" + id + " was deleted !");
 				return SUCCESS;
 			} else
 				return ERROR;
 		} else {
 			for (String s : selection) {
-				if (cd.deleteStore(Integer.parseInt(s)))
+				if (cd.delete(Integer.parseInt(s)))
 					addActionMessage("Item #" + s + " was deleted !");
 				else
 					return ERROR;

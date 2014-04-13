@@ -100,7 +100,7 @@ public class UserAction extends ActionSupport {
 		}
 		if (confirmPassword.equals(userBean.getPassword())) {
 			UserDAO ud = new UserDAO();
-			if (ud.newUser(userBean)) {
+			if (ud.addUser(userBean)) {
 				addActionMessage("One item has been created successfully.");
 				return SUCCESS;
 			} else {

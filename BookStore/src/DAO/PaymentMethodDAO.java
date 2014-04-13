@@ -9,16 +9,11 @@ import java.util.Vector;
 import model.PaymentMethod;
 
 public class PaymentMethodDAO {
-	DBConnection dbConnection;
 	Connection conn;
-	
-	public PaymentMethodDAO() {
-		dbConnection = DBConnection.getConn();
-		conn = dbConnection.getConnection();	
-	}
+
 
 	public Vector<PaymentMethod> find(String methodDescription) {
-		 
+		conn = DBConnection.getConn().getConnection();
 		StringBuffer query = new StringBuffer("select * from tblPaymentMethod ");
 
 		if (methodDescription.length() > 0) {
@@ -46,7 +41,7 @@ public class PaymentMethodDAO {
 	}
 
 	public PaymentMethod getPaymentMethod(int id) {
-		 
+		conn = DBConnection.getConn().getConnection();
 		String query = "select * from tblpaymentMethod where id = " + id;
 		java.sql.Statement st;
 		ResultSet rs = null;
@@ -68,7 +63,7 @@ public class PaymentMethodDAO {
 	}
 
 	public boolean savePaymentMethod(PaymentMethod paymentMethod) {
-		 
+		conn = DBConnection.getConn().getConnection();
 		String query = "update tblpaymentMethod set methodDescription = ?"
 				+ "where id = ?";
 		try {
@@ -87,7 +82,7 @@ public class PaymentMethodDAO {
 	}
 	
 	public boolean deletePaymentMethod(int id){
-		 
+		conn = DBConnection.getConn().getConnection();
 		String query = "delete from tblpaymentMethod where id = "+id;
 		try {
 			PreparedStatement pr = conn.prepareStatement(query);
@@ -102,7 +97,7 @@ public class PaymentMethodDAO {
 	}
 	
 	public boolean newPaymentMethod(PaymentMethod paymentMethod){
-		 
+		conn = DBConnection.getConn().getConnection();
 		String query = "insert into tblpaymentMethod (id,methodDescription) values (?,?)";
 		try {		
 			PreparedStatement pr = conn.prepareStatement(query);

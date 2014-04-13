@@ -62,7 +62,7 @@ public class UserAction extends ActionSupport implements SessionAware{
 		if (confirmPassword.equals(userBean.getPassword())) {
 			UserDAO ud = new UserDAO();
 			if (!ud.checkUserExist(userBean.getUsername())) {
-				if (ud.newUser(userBean)) {
+				if (ud.addUser(userBean)) {
 					addActionMessage("One item has been created successfully.");
 					return SUCCESS;
 				} else {

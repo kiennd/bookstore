@@ -11,15 +11,11 @@ import java.util.Vector;
 
 import model.Author;
 
-public class AuthorDAO {
-	DBConnection dbConnection;
+public class AuthorDAO implements IObjectDAO {
 	Connection conn;
-	public AuthorDAO() {
-		dbConnection = DBConnection.getConn();
-		conn = dbConnection.getConnection();
-	}
-	
+
 	public boolean addAuthor(Author author) {
+		conn = DBConnection.getConn().getConnection();
 
 		String query = "insert into tblauthor values (?,?,?,?,?)";
 		PreparedStatement pr;
@@ -43,6 +39,7 @@ public class AuthorDAO {
 	}
 
 	public ArrayList<Author> returnNumberOfResult() {
+		conn = DBConnection.getConn().getConnection();
 		ArrayList<Author> list = new ArrayList<>();
 		String query = "select * from tblauthor";
 		PreparedStatement pr;
@@ -65,6 +62,7 @@ public class AuthorDAO {
 	}
 
 	public boolean updateAuthor(int id, Author author) {
+		conn = DBConnection.getConn().getConnection();
 		String query = "update tblauthor set name = ?, dateOfBirth = ?, description = ? , imageurl = ?"
 				+ "where id = ?";
 		try {
@@ -87,6 +85,7 @@ public class AuthorDAO {
 	}
 
 	public boolean deleteAuthor(int id) {
+		conn = DBConnection.getConn().getConnection();
 		String query = "delete from tblauthor where id = " + id;
 		try {
 			PreparedStatement pr = conn.prepareStatement(query);
@@ -108,6 +107,7 @@ public class AuthorDAO {
 	public Author getAuthorHightLight() {
 		Author author = new Author();
 
+		conn = DBConnection.getConn().getConnection();
 		String sql = "select a.*,o.*,b.*,sum(o.quantity) as su "
 				+ " from tblauthor as a"
 				+ " inner join tblbook as b on b.authorid = a.id"
@@ -129,6 +129,7 @@ public class AuthorDAO {
 	}
 
 	public Vector<Author> find(String name) {
+		conn = DBConnection.getConn().getConnection();
 		Vector<Author> authors = new Vector<>();
 
 		try {
@@ -149,5 +150,23 @@ public class AuthorDAO {
 		}
 		return authors;
 	}
+
+	@Override
+	public boolean delete(int id) {
+		conn = DBConnection.getConn().getConnection();
+		String query = "delete from tblauthor where id = " + id;
+		try {
+			PreparedStatement pr = conn.prepareStatement(query);
+			int i = pr.executeUpdate();
+			if (i != -1) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
 
 }

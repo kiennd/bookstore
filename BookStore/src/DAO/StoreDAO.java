@@ -8,16 +8,11 @@ import java.util.Vector;
 
 import model.Store;
 
-public class StoreDAO {
-	DBConnection dbConnection;
+public class StoreDAO implements IObjectDAO{
 	Connection conn;
 
-	public StoreDAO() {
-		dbConnection = DBConnection.getConn();
-		conn = dbConnection.getConnection();
-	}
 	public Vector<Store> findStore(String name) {
-		
+		conn = DBConnection.getConn().getConnection();
 		StringBuffer query = new StringBuffer("select * from tblstore ");
 
 		java.sql.Statement st;
@@ -44,7 +39,7 @@ public class StoreDAO {
 	public Store getStore(int id) {
 		String sql = "select * from tblstore where bookId = ?";
 		Store s=new Store();
-		
+		conn = DBConnection.getConn().getConnection();
 		try {
 			java.sql.PreparedStatement pre = conn.prepareStatement(sql);
 			pre.setInt(1, id);
@@ -63,7 +58,7 @@ public class StoreDAO {
 	}
 
 	public boolean newStore(Store store) {
-		
+		conn = DBConnection.getConn().getConnection();
 		String sql = "insert into tblstore values (?,?)";
 		System.out.println(sql);
 		try {
@@ -83,7 +78,7 @@ public class StoreDAO {
 	}
 
 	public boolean saveStore(Store store) {
-		
+		conn = DBConnection.getConn().getConnection();
 		String query = "update tblstore set quantity=?" + " where bookID = ?";
 		try {
 			PreparedStatement pr = conn.prepareStatement(query);
@@ -97,11 +92,14 @@ public class StoreDAO {
 		}
 		return false;
 	}
+	
+	
 
-	public boolean deleteStore(int bookid) {
-		
+	@Override
+	public boolean delete(int id) {
+		conn = DBConnection.getConn().getConnection();
 		try {
-			String query = "delete from tblstore where bookid = " + bookid;
+			String query = "delete from tblstore where bookid = " + id;
 			PreparedStatement pr = conn.prepareStatement(query);
 			if (!pr.execute()) {
 				return true;

@@ -153,7 +153,7 @@ public class BookAction extends ActionSupport implements ServletRequestAware, Su
 				return SUCCESS;
 			} else {
 				addActionError("Item create false!");
-				sd.deleteStore(bookBean.getId());
+				sd.delete(bookBean.getId());
 				return ERROR;
 			}
 		} catch (Exception e) {
